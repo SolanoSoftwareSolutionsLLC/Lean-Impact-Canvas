@@ -15,12 +15,16 @@ class ViewController:UIViewController {
     @IBOutlet weak var signOutBttn: UIButton!
     @IBOutlet weak var googleSignInButtnView: GIDSignInButton!
     
+    private var fsh:FSHelper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        fsh = FSHelper.shared
         
         toggleSignInButtons()
     }
@@ -32,13 +36,15 @@ class ViewController:UIViewController {
 
     @IBAction func didPressSignOut(_ sender: Any) {
         do {
+            let user = Auth.auth().currentUser?.displayName
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance().signOut()
             
             toggleSignInButtons()
+            fsh.breakDown()
+            print("\(user!) signed out!")
         } catch {
             print(AuthErrorCode.keychainError)
-            
         }
     }
 }
@@ -68,12 +74,14 @@ extension ViewController: GIDSignInDelegate, GIDSignInUIDelegate{
             Auth.auth().signIn(with: FIRAuth) { (user, err) in
                 if err == nil {
                     print("Signed in as: " + (user?.displayName)! )
+                    
+                    self.fsh.setUp()
                     self.toggleSignInButtons()
+                    
                 }else{
                     //Default value below used to silence warning
                     print(err?.localizedDescription ?? "")
                 }
-                
             }
         }
     }

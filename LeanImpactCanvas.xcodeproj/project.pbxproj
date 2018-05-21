@@ -15,6 +15,8 @@
 		15A816E520ACBDBF005898C2 /* LeanImpactCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816E420ACBDBF005898C2 /* LeanImpactCanvasTests.swift */; };
 		15A816F020ACBDBF005898C2 /* LeanImpactCanvasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816EF20ACBDBF005898C2 /* LeanImpactCanvasUITests.swift */; };
 		15A816FE20ACC0D8005898C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15A816FD20ACC0D8005898C2 /* GoogleService-Info.plist */; };
+		15AABEE020B3367200C0550E /* FSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AABEDF20B3367200C0550E /* FSHelper.swift */; };
+		15AABEE320B36DD500C0550E /* FSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AABEE220B36DD500C0550E /* FSModels.swift */; };
 		3DFC54CCFC2AF3FE8C6A30C6 /* Pods_LeanImpactCanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608538C8FEF9694933C7C386 /* Pods_LeanImpactCanvasUITests.framework */; };
 		A0FBA8B6DA0CDBE43A88ADE1 /* Pods_LeanImpactCanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7413A8436B1606C49E580099 /* Pods_LeanImpactCanvasTests.framework */; };
 		EEBE04AC456360BF9ED208A5 /* Pods_LeanImpactCanvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5DF72B22843D0939655E5 /* Pods_LeanImpactCanvas.framework */; };
@@ -53,6 +55,8 @@
 		15A816EF20ACBDBF005898C2 /* LeanImpactCanvasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeanImpactCanvasUITests.swift; sourceTree = "<group>"; };
 		15A816F120ACBDBF005898C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A816FD20ACC0D8005898C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		15AABEDF20B3367200C0550E /* FSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSHelper.swift; sourceTree = "<group>"; };
+		15AABEE220B36DD500C0550E /* FSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSModels.swift; sourceTree = "<group>"; };
 		273E0A9111F8DE302F502B36 /* Pods-LeanImpactCanvasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasUITests/Pods-LeanImpactCanvasUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5205DBB34C54BFDC13E4BB15 /* Pods-LeanImpactCanvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvas.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas.release.xcconfig"; sourceTree = "<group>"; };
 		52AC00572F8C35DFDDBD26D2 /* Pods-LeanImpactCanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasTests/Pods-LeanImpactCanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				15A816D820ACBDBF005898C2 /* LaunchScreen.storyboard */,
 				15A816DB20ACBDBF005898C2 /* Info.plist */,
 				15A816FD20ACC0D8005898C2 /* GoogleService-Info.plist */,
+				15AABEE120B3367F00C0550E /* HelperClasses */,
 			);
 			path = LeanImpactCanvas;
 			sourceTree = "<group>";
@@ -143,6 +148,15 @@
 				15A816F120ACBDBF005898C2 /* Info.plist */,
 			);
 			path = LeanImpactCanvasUITests;
+			sourceTree = "<group>";
+		};
+		15AABEE120B3367F00C0550E /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				15AABEDF20B3367200C0550E /* FSHelper.swift */,
+				15AABEE220B36DD500C0550E /* FSModels.swift */,
+			);
+			path = HelperClasses;
 			sourceTree = "<group>";
 		};
 		32552F914FE7EB29AD7CEBEB /* Pods */ = {
@@ -487,6 +501,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A816D220ACBDBD005898C2 /* ViewController.swift in Sources */,
+				15AABEE020B3367200C0550E /* FSHelper.swift in Sources */,
+				15AABEE320B36DD500C0550E /* FSModels.swift in Sources */,
 				15A816D020ACBDBD005898C2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
