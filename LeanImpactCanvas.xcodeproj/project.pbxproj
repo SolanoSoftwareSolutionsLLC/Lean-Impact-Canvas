@@ -50,8 +50,8 @@
 		15C2DACC20C059CF0047BC0A /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */; };
 		15C2DAD220C060020047BC0A /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */; };
 		15C2DAD420C0602C0047BC0A /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */; };
-		15F3D0F720B7AE91009A7D64 /* FSProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F620B7AE91009A7D64 /* FSProjectHelper.swift */; };
-		15F3D0F920B7AEAB009A7D64 /* FSUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F820B7AEAB009A7D64 /* FSUserHelper.swift */; };
+		15F3D0F720B7AE91009A7D64 /* LCProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */; };
+		15F3D0F920B7AEAB009A7D64 /* LCUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */; };
 		773462008CB81ED23DFC02A1 /* Pods_LeanImpactCanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821DAFEA81F71AC45A27C037 /* Pods_LeanImpactCanvasTests.framework */; };
 		881A3DD5629E1B4AF7476234 /* Pods_FSHelperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */; };
 		8C4B8BA4CE4A7A75CAC04417 /* Pods_FSHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B827E9E6A4E791DB2F1DF8 /* Pods_FSHelper.framework */; };
@@ -164,8 +164,8 @@
 		15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
 		15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
-		15F3D0F620B7AE91009A7D64 /* FSProjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSProjectHelper.swift; sourceTree = "<group>"; };
-		15F3D0F820B7AEAB009A7D64 /* FSUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSUserHelper.swift; sourceTree = "<group>"; };
+		15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCProjectHelper.swift; sourceTree = "<group>"; };
+		15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCUserHelper.swift; sourceTree = "<group>"; };
 		35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSHelperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45000768EF3534D827F02E96 /* Pods-LeanImpactCanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasTests/Pods-LeanImpactCanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53D7280FB309395F73341D19 /* Pods-FSHelperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelperTests/Pods-FSHelperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -330,10 +330,10 @@
 				15AABEDF20B3367200C0550E /* LCHelper.swift */,
 				15AABEE220B36DD500C0550E /* LCModels.swift */,
 				1575675720C97AD50038C1C6 /* LCDebug.swift */,
-				15507B0A20C04E3B00D8EBDE /* LCAuthHelper.swift */,
-				15F3D0F620B7AE91009A7D64 /* FSProjectHelper.swift */,
-				15F3D0F820B7AEAB009A7D64 /* FSUserHelper.swift */,
 				155553F420BF075600EB312A /* LCServiceHelper.swift */,
+				15507B0A20C04E3B00D8EBDE /* LCAuthHelper.swift */,
+				15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */,
+				15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */,
 				15B87B0020B71C2300BBD11B /* Info.plist */,
 				15B87AFF20B71C2300BBD11B /* LCHelper.h */,
 				157E51D120BF2ECC001EE79A /* Firebase.h */,
@@ -782,8 +782,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15F3D0F720B7AE91009A7D64 /* FSProjectHelper.swift in Sources */,
-				15F3D0F920B7AEAB009A7D64 /* FSUserHelper.swift in Sources */,
+				15F3D0F720B7AE91009A7D64 /* LCProjectHelper.swift in Sources */,
+				15F3D0F920B7AEAB009A7D64 /* LCUserHelper.swift in Sources */,
 				15B87B1C20B71C4100BBD11B /* LCModels.swift in Sources */,
 				155553F520BF075600EB312A /* LCServiceHelper.swift in Sources */,
 				15B87B1B20B71C4100BBD11B /* LCHelper.swift in Sources */,
