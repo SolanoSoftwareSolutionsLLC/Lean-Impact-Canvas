@@ -1,5 +1,5 @@
 //
-//  FSHelper.swift
+//  LCHelper.swift
 //  LeanImpactCanvas
 //
 //  Created by Hassam Solano-Morel on 5/21/18.
@@ -9,22 +9,14 @@
 import Foundation
 
 public class LCHelper {
+        
+    private static let SHARED:LCHelper = LCHelper()
     
-    internal var currentUserUID:String = ""
-
-    //Reference to the firestore roots
-    internal var FSRoot:Firestore? = nil
-    internal var userRoot:DocumentReference? = nil
-    internal var projectsRoot:DocumentReference? = nil
-    
-    //Enforce singlton design
-    private static let SHARED:LCHelper? = LCHelper()
-    private var SERVICE_HELPER:LCServiceHelper?
+    private var SERVICES_HELPER:LCServiceHelper?
     private var AUTH_HELPER:LCAuthHelper?
-    private var USER_HELPER:FSUserHelper?
-    private var PROJECT_HELPER:FSProjectHelper?
+    private var USER_HELPER:LCUserHelper?
+    private var PROJECT_HELPER:LCProjectHelper?
 
-    
     internal var active:Bool = false //This will be used to ensure that the helper has been properly initilized
     
     /******************************************************************/
@@ -39,21 +31,21 @@ public class LCHelper {
     /******************************************************************/
     //Start Client Accessible Methods//
     
-    public func serviceHelper() -> LCServiceHelper{
-        if SERVICE_HELPER == nil{
-            SERVICE_HELPER = LCServiceHelper(HelperRoot: LCHelper.shared())
+    public func services() -> LCServiceHelper{
+        if SERVICES_HELPER == nil{
+            SERVICES_HELPER = LCServiceHelper(HelperRoot: LCHelper.shared())
         }
-        return SERVICE_HELPER!
+        return SERVICES_HELPER!
     }
-    public func userHelper() -> FSUserHelper{
+    public func userHelper() -> LCUserHelper{
         if USER_HELPER == nil{
-            USER_HELPER = FSUserHelper(HelperRoot: LCHelper.shared())
+            USER_HELPER = LCUserHelper(HelperRoot: LCHelper.shared())
         }
         return USER_HELPER!
     }
-    public func projectHelper() -> FSProjectHelper{
+    public func projectHelper() -> LCProjectHelper{
         if PROJECT_HELPER == nil{
-            PROJECT_HELPER = FSProjectHelper(HelperRoot: LCHelper.shared())
+            PROJECT_HELPER = LCProjectHelper(HelperRoot: LCHelper.shared())
         }
         return PROJECT_HELPER!
     }
@@ -64,25 +56,26 @@ public class LCHelper {
         return AUTH_HELPER!
     }
     
-    
     /*getS*/
     public static func shared() -> LCHelper{
-        return SHARED!
+        return SHARED
     }
     
     /*Configure
     */
     public func configure(){
         //Init helper vars
-        SERVICE_HELPER = serviceHelper()
+        SERVICES_HELPER = services()
         //Additional config
-        if FirebaseApp.app() == nil{
-            SERVICE_HELPER?.configure()
+        if services().app() == nil{
+            SERVICES_HELPER?.configure()
         }
         
         AUTH_HELPER = authHelper()
         USER_HELPER = userHelper()
         PROJECT_HELPER = projectHelper()
+        
+        setup()
     }
     
     /*breakDown()
@@ -90,11 +83,16 @@ public class LCHelper {
         Detach FSHelper from current user
      */
     public func breakDown(){
-        userRoot = nil
-        projectsRoot = nil
-        currentUserUID = ""
+        //Break down UserHelper
+        userHelper().root = nil
+        userHelper().currentUserUID = ""
+
+        //Break down ProjectHelper
+        projectHelper().root = nil
         
+        //Break down LSHelper (self)
         active = false
+        
         //DEBUGGING
         print(LCDebug.debugMessage(fromWhatClass: "LCHelper",
                                    message: "Helper broken down. Ready = \(active)"))
@@ -123,71 +121,45 @@ public class LCHelper {
         return active
     }
     
-    /*createUser()
+    /*setUp()
      Purpose:
-        Creates a new user in the Firestore DB if
-        the user does not alreay exsists
+     1. Attach LCHelper to current user
+     2. Create user Firestore DB if does NOT exists
      */
-    internal func createUser(){
-        if ready(){
-            userExists { (inDB) in
-                if ( !inDB ){
-                    print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                               message: "Creating User DB"))
-                    let currUser = Auth.auth().currentUser
-                    let data = LCModels.NEW_USER(usr: currUser!)
-                    
-                    self.userRoot?.setData(data, completion: { (err) in
-                        if (err != nil) {
-                            print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                                       message: "@createUser() \(err?.localizedDescription ?? "")"))
-                        }
-                    })
-                }else{
-                    print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                               message: "User profile already in database."))
-                }
+    private func setup(){
+        services().FSRoot = Firestore.firestore()
+        
+        if ( !ready() ){
+            if(authHelper().isSignedIn()){
+                let UID = String((services().auth()?.currentUser?.uid)!)
+
+                //Set up UserHelper
+                userHelper().currentUserUID = UID
+                userHelper().root = services().FSRoot?.document("USERS/\(UID)")
+                
+                //Set up ProjectHelper
+                projectHelper().root = services().FSRoot?.document("PROJECTS/\(UID)")
+                
+                //Set up LCHelper (self)
+                active = true
+                
+                //This next setup line depends on (self).active == true
+                userHelper().createUser()
+                
+                //DEBUGGING
+                print(LCDebug.debugMessage(fromWhatClass: "LCHelper",
+                                           message: "Set up for user \(UID).  READY"))
+                
+            }else{
+                //DEBUGGING
+                print(LCDebug.debugMessage(fromWhatClass: "LCHelper",
+                                           message: "Not yet set up. User NOT signed in:\n1. SignIn the user\n2. Call <LCHelperRef>.configure()"))
             }
         }else{
-            print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                       message: "Could not create user. FSHelper not ready. Run <FSHelperRef>.setUp() and try again"))
+            //DEBUGGING
+            print(LCDebug.debugMessage(fromWhatClass: "LCHelper",
+                                       message: "Already setup.\(ready())"))
         }
-    }
-    
-    /*userExists(completion)
-     Purpose:
-        Checks the Firestore DB for the current users record
-     Notes:
-        This method requires a completion block as all Firestore
-        requests are async calls. Call this method as follows:
-     
-            userExists{(inDB:Bool) in
-                if inDB {
-                    //Perform work if user already exists
-                }else{
-                    //Perform work if user does NOT already exist
-                }
-            }
-     */
-    private func userExists(completion: @escaping (Bool)->()) {
-        let docRef = FSRoot?.document("USERS/\(currentUserUID)")
-        
-        docRef?.getDocument { (document, error) in
-            var inDB:Bool = false
-
-            if let document = document, document.exists {
-                inDB = true
-//                //DEBUGGING
-//                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-//                                           message: "User exsists"))
-            } else {
-//                //DEBUGGING
-//                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-//                                           message: "User does not exsist"))
-            }
-            completion(inDB)
-        }
-        
     }
     
     //End Private Helper Methods//

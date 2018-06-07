@@ -23,7 +23,7 @@ public class LCAuthHelper: NSObject {
         super.init()
         
         self.helper = root
-        GIDSignIn.sharedInstance().clientID = root.serviceHelper().app()?.options.clientID
+        GIDSignIn.sharedInstance().clientID = root.services().app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
         self.sharedGID = GIDSignIn.sharedInstance()
@@ -75,7 +75,6 @@ public class LCAuthHelper: NSObject {
             self.group.wait()
             
             completion()
-            
         }
     }
     
@@ -102,7 +101,7 @@ extension LCAuthHelper: GIDSignInDelegate{
             let GIDAuth = user.authentication
             let FIRAuth:AuthCredential = GoogleAuthProvider.credential(withIDToken: (GIDAuth?.idToken)!, accessToken: (GIDAuth?.accessToken)!)
             
-            helper?.serviceHelper().auth()?.signInAndRetrieveData(with: FIRAuth) { (user, err) in
+            helper?.services().auth()?.signInAndRetrieveData(with: FIRAuth) { (user, err) in
                 if err == nil {
                     
                     //DEBUGGING
@@ -135,10 +134,11 @@ extension LCAuthHelper: GIDSignInDelegate{
             }
             
             helper?.breakDown()
+            group.leave()
+            
 //            //DEBUGGING
 //            print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
 //                                       message: "GIDSignIn Delegate - @didDisconnectWith -> Signed out!"))
-            self.group.leave()
         }
         else{
             print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
