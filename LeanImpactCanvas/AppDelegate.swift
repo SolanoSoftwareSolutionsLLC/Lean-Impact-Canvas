@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Firebase
-
+import LCHelper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //FirebaseCore Init
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
+        LCHelper.shared().configure()
         
         return true
     }
