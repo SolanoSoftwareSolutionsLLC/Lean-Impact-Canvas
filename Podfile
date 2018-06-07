@@ -1,17 +1,23 @@
-	# Uncomment the next line to define a global platform for your project
+# Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
+
+target 'LCHelper' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for LCHelper
+
+  target 'LCHelperTests' do
+    # Pods for testing
+  end
+
+end
 
 target 'LeanImpactCanvas' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for LeanImpactCanvas
-  	pod 'Firebase/Core'
-  	pod 'Firebase/Auth'
-  	pod 'Firebase/Storage'
-  	pod 'Firebase/Firestore'
-  	pod 'GoogleSignIn'
-
 	pod 'SDWebImage'
   	pod 'SwiftyJSON'
 

@@ -1,0 +1,4 @@
+module Firebase {
+  header "FSHelper.h"
+  export *
+}
