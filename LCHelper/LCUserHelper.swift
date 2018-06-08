@@ -30,8 +30,9 @@ public class LCUserHelper{
      Return:
         [PROJECT_NAME:FIRESTORE/PATH/TO/PROJECT]
      */
-    public func userProjects() -> [String:String]{
-        return helper.projectHelper().getProjects(forUser: currentUserUID)
+    public func userProjects(completion:@escaping (_ dataDict : [String:String])->()){
+        let data = helper.projectHelper().getProjects(forUser: currentUserUID)
+        completion(data)
     }
     /*user()
      Purpose:

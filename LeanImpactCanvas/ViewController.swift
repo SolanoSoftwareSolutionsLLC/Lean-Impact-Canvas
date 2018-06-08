@@ -54,6 +54,12 @@ class ViewController:UIViewController,GIDSignInUIDelegate {
 
         helper.authHelper().signIn {
             self.signedIn = self.helper.authHelper().isSignedIn()
+            
+            self.helper.userHelper().userProjects(completion: { (data) in
+                print(data)
+            })
+            
+            
         }
     }
 
