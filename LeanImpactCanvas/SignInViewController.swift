@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignInViewController.swift
 //  LeanImpactCanvas
 //
 //  Created by Hassam Solano-Morel on 5/16/18.
@@ -10,13 +10,12 @@ import UIKit
 import GoogleSignIn
 import LCHelper
 
-class ViewController:UIViewController,GIDSignInUIDelegate {
+
+class SignInViewController:UIViewController,GIDSignInUIDelegate {
     
-    @IBOutlet weak var signOutBttn: UIButton!
     @IBOutlet weak var signInBttn: UIButton!
     
     private var helper:LCHelper!
-    
     private var signedIn:Bool!{
         willSet{
             if newValue == nil{
@@ -26,9 +25,9 @@ class ViewController:UIViewController,GIDSignInUIDelegate {
         
         didSet{
             DispatchQueue.main.async {
-//                //DEBUGGING
-//                print(LCDebug.debugMessage(fromWhatClass: "ViewController",
-//                                           message: "value of self.signedIn set to \(self.signedIn!)"))
+                //                //DEBUGGING
+                //                print(LCDebug.debugMessage(fromWhatClass: "ViewController",
+                //                                           message: "value of self.signedIn set to \(self.signedIn!)"))
                 self.toggleSignInButtons()
             }
         }
@@ -36,12 +35,17 @@ class ViewController:UIViewController,GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        OrientationUtility.lockOrientation(.portrait)
+                        
         helper = LCHelper.shared()
         helper.authHelper().GIDInstance().uiDelegate = self
-        
-        signedIn = helper.authHelper().isSignedIn()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        signedIn = helper.authHelper().isSignedIn()
+        toProjectsView()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,35 +58,28 @@ class ViewController:UIViewController,GIDSignInUIDelegate {
 
         helper.authHelper().signIn {
             self.signedIn = self.helper.authHelper().isSignedIn()
-            
-            self.helper.userHelper().userProjects(completion: { (data) in
-                print(data)
-            })
-            
-            
+            self.toProjectsView()
+            self.performSegue(withIdentifier: "toProjectsSegue", sender: nil)
         }
-    }
-
-    @IBAction func didPressSignOut(_ sender: Any) {
-//        DEBUGGING
-//        print(LCDebug.debugMessage(fromWhatClass: "ViewController",
-//                                   message: " @didPressSignOut ()"))
-        helper.authHelper().signOut {
-            self.signedIn = self.helper.authHelper().isSignedIn()
-        }
-     
     }
 }
 /******************************************************************/
 /*Class helper methods*/
-extension ViewController{
+extension SignInViewController{
     private func toggleSignInButtons(){
         if signedIn {
-            signOutBttn.isEnabled = true
             signInBttn.isEnabled = false
         }else{
-            signOutBttn.isEnabled = false
             signInBttn.isEnabled = true
+        }
+    }
+    
+    private func toProjectsView(){
+        if signedIn {
+            print("IN SEGUE")
+            performSegue(withIdentifier: "toProjectsSegue", sender: nil)
+        }else{
+            print("NO SEGUE")
         }
     }
 }
