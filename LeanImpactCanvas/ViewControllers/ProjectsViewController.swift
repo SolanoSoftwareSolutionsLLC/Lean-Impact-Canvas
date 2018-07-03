@@ -15,14 +15,26 @@ class ProjectsViewController: UIViewController {
     @IBOutlet weak var projectsCollectionView: UICollectionView!
     
     private let helper:LCHelper = LCHelper.shared()
-    private var projects:[String:String]!
+    private var projects:[LCProject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileBttn.sd_setBackgroundImage(with: helper.userHelper().user()?.photoURL, for: UIControlState.normal, completed: nil)
+        profileBttn.sd_setBackgroundImage(with: helper.userHelper().user()?.photoURL,
+                                          for: UIControlState.normal, completed: nil)
+    
         projectsCollectionView.delegate = self
         projectsCollectionView.dataSource = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global().async {
+            self.helper.userHelper().userProjects(completion: { (data) in
+                DispatchQueue.main.async {
+                    self.projects = data
+                    self.projectsCollectionView.reloadData()
+                }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,15 +62,17 @@ class ProjectsViewController: UIViewController {
     
     @IBAction func didPressAddProjectBttn(_ sender: Any) {
     }
-    /*
-    // MARK: - Navigation
+  
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.destination is DecksViewController{
+            let dest:DecksViewController = segue.destination as! DecksViewController
+            let projIndex:Int = sender as! Int
+            
+            dest.DECKS = projects[projIndex].DECKS
+        }
     }
-    */
 
 }
 extension ProjectsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
@@ -66,19 +80,22 @@ extension ProjectsViewController:UICollectionViewDelegate, UICollectionViewDataS
         let cell:ProjectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectCell", for: indexPath) as! ProjectCell
         
         if projects != nil{
-            for (key,value) in projects{
-                cell.TitleLabel.text = key
-                cell.ProjectDescriptionTextField.text = value
-            }
+            cell.TitleLabel.text = projects[indexPath.row].NAME
+            cell.ProjectDescriptionTextField.text = "This is a test of the description"
+        
         }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: "toDecksSegue", sender: indexPath.row)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        if projects != nil{
+            return projects.count
+        }
+        return 0
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

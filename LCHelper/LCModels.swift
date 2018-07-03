@@ -16,6 +16,8 @@ internal class LCModels {
     static let DECK_KEYWORD = "DECK"
     static let DECKS_KEYWORD = "DECKS"
     static let SECTIONS_KEYWORD = "SECTIONS"
+    static let PROJECT_NAME_KEYWORD = "name"
+    static let DECK_SECTION_ORDER_KEYWORD = "sectionsOrder"
     
     /*STRING REPLACEMENT CONSTANTS*/
     static let UID_KEYWORD = "$UID"
@@ -36,6 +38,8 @@ internal class LCModels {
         USERS_KEYWORD.appending("/").appending(UID_KEYWORD).appending("/").appending(PROJECTS_KEYWORD)
     
     //Project
+    static let PROJECT_ROOT_PATH =
+        PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD)
     static let PROJECT_INFO_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(INFO_KEYWORD)
     static let PROJECT_USERS_PATH =

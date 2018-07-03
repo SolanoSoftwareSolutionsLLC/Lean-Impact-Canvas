@@ -59,7 +59,6 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
         helper.authHelper().signIn {
             self.signedIn = self.helper.authHelper().isSignedIn()
             self.toProjectsView()
-            self.performSegue(withIdentifier: "toProjectsSegue", sender: nil)
         }
     }
 }

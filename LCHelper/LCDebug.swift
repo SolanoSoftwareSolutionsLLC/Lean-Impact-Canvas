@@ -10,8 +10,8 @@ import Foundation
 
 
 public class LCDebug{
-    public static func debugMessage(fromWhatClass sender:String, message:String) -> String{
+    public static func debugMessage(fromWhatClass sender:String, message:String){
         let rtnMessage = "\nDEBUG - \(sender) : \(message)\n"
-        return rtnMessage
+        print(rtnMessage)
     }
 }

@@ -23,25 +23,22 @@ public class LCProjectHelper{
      Return:
         [PROJECT_NAME:FIRESTORE/PATH/TO/PROJECT]
      */
-    internal func getProjects(forUser user:String) -> [String:String]{
+    internal func getProjects(forUser user:String) -> [LCProject]{
         let path = LCModels.USER_ROOT(forUser: user)
-        var rtnDict:[String:String] = [:]
+        var rtnArr:[LCProject] = []
         
         group.enter()
         
         //Get list of projectIDs
         helper.services().firestore()?.document(path).getDocument(completion: { (snap, err) in
             let array:Array<DocumentReference> = snap?.get(LCModels.PROJECTS_KEYWORD) as! Array<DocumentReference>
-            
+
             //Get info for each projctID
             for doc in array {
                 self.group.enter()//Make sure thread waits for each project info get
                 doc.getDocument(completion: { (proj, err) in
-                    if err == nil{
-                        let info:[String:String] = (proj?.data()![LCModels.INFO_KEYWORD])! as! [String : String]
-                        
-                        //Insert into rtnDict
-                        rtnDict[info["name"]!] = doc.path
+                    if proj != nil{
+                        rtnArr.append(LCProject(ref: proj!))
                     }else{
                         print(LCDebug.debugMessage(fromWhatClass: "LCProjectHelper",
                                                    message: "Projects @ \(doc.path) does NOT exist"))
@@ -53,15 +50,16 @@ public class LCProjectHelper{
             
             self.group.leave()
         })
-        
+
         //Wait until all results are in
         group.wait()
         //Return results
         //DEBUGGING
-        print(LCDebug.debugMessage(fromWhatClass: "LCProjectHelper",
-                                   message: "@getProjects - Got:\n \(rtnDict)"))
-        return rtnDict
+        LCDebug.debugMessage(fromWhatClass: "LCProjectHelper",
+                             message: "@getProjects - Got \(rtnArr.count) projects\n")
+        return rtnArr
     }
+
     
     
 }
