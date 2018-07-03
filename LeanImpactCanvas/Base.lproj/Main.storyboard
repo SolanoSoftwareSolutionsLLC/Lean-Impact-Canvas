@@ -181,7 +181,7 @@
                     <connections>
                         <outlet property="profileBttn" destination="rV7-MT-bjH" id="wR8-jU-tB7"/>
                         <outlet property="projectsCollectionView" destination="Ndj-sf-H82" id="GeB-Vv-JQn"/>
-                        <segue destination="O39-Qe-kav" kind="show" id="gtg-Od-dHP"/>
+                        <segue destination="O39-Qe-kav" kind="show" identifier="toDecksSegue" id="gtg-Od-dHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0f7-D1-lOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="2169" y="-726"/>
         </scene>
-        <!--DeckView-->
+        <!--SectionsView-->
         <scene sceneID="53I-01-c5k">
             <objects>
-                <viewController title="DeckView" id="cOW-Hv-96h" sceneMemberID="viewController">
+                <viewController title="SectionsView" id="cOW-Hv-96h" userLabel="SectionsView" customClass="DeckViewController" customModule="LeanImpactCanvas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CVv-bK-B4c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,7 +243,7 @@
         <!--DecksView-->
         <scene sceneID="Cp5-cV-gn6">
             <objects>
-                <viewController title="DecksView" id="O39-Qe-kav" sceneMemberID="viewController">
+                <viewController title="DecksView" id="O39-Qe-kav" customClass="DecksViewController" customModule="LeanImpactCanvas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yET-Tc-OPf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,7 +259,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0ek-JL-iEW">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="deckCell" id="0ek-JL-iEW">
                                         <rect key="frame" x="0.0" y="0.0" width="161" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -288,7 +288,8 @@
                         <viewLayoutGuide key="safeArea" id="xwt-sb-d6f"/>
                     </view>
                     <connections>
-                        <segue destination="cOW-Hv-96h" kind="show" id="lyr-c7-n27"/>
+                        <outlet property="collectionView" destination="afQ-P4-Wa6" id="8mC-JE-IQB"/>
+                        <segue destination="cOW-Hv-96h" kind="show" identifier="toSectionsSegue" id="lyr-c7-n27"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCp-ZU-1Ru" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,6 +303,6 @@
         <image name="plus" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hy3-fR-7UB"/>
+        <segue reference="y5F-zn-MB2"/>
     </inferredMetricsTieBreakers>
 </document>
