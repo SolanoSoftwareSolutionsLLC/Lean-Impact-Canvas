@@ -43,6 +43,7 @@
 		15A1321320EC180E006245E7 /* SectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321220EC180E006245E7 /* SectionsViewController.swift */; };
 		15A1321520EC1960006245E7 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321420EC1960006245E7 /* CardViewController.swift */; };
 		15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321A20EC19F1006245E7 /* PresentationViewController.swift */; };
+		15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321C20EEA1D7006245E7 /* SectionCell.swift */; };
 		15A816D020ACBDBD005898C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816CF20ACBDBD005898C2 /* AppDelegate.swift */; };
 		15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816D120ACBDBD005898C2 /* SignInViewController.swift */; };
 		15A816D520ACBDBD005898C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A816D320ACBDBD005898C2 /* Main.storyboard */; };
@@ -157,6 +158,7 @@
 		15A1321220EC180E006245E7 /* SectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsViewController.swift; sourceTree = "<group>"; };
 		15A1321420EC1960006245E7 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		15A1321A20EC19F1006245E7 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
+		15A1321C20EEA1D7006245E7 /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 		15A816CC20ACBDBD005898C2 /* LeanImpactCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeanImpactCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A816CF20ACBDBD005898C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15A816D120ACBDBD005898C2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				1590AEE220D2C7A200151B80 /* ProjectCell.swift */,
+				15A1321C20EEA1D7006245E7 /* SectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -298,9 +301,9 @@
 			children = (
 				157E51D320BF2F00001EE79A /* module.modulemap */,
 				15A816CE20ACBDBD005898C2 /* LeanImpactCanvas */,
+				15B87AFE20B71C2300BBD11B /* LCHelper */,
 				15A816E320ACBDBF005898C2 /* LeanImpactCanvasTests */,
 				15A816EE20ACBDBF005898C2 /* LeanImpactCanvasUITests */,
-				15B87AFE20B71C2300BBD11B /* LCHelper */,
 				15A816CD20ACBDBD005898C2 /* Products */,
 				EA538685F3FC81D613262465 /* Pods */,
 				6CB09F09F92D8BF9F9D73D7D /* Frameworks */,
@@ -793,6 +796,7 @@
 				1590AEE120D17A2900151B80 /* ProjectsViewController.swift in Sources */,
 				15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */,
 				15A1321320EC180E006245E7 /* SectionsViewController.swift in Sources */,
+				15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */,
 				15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */,
 				15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */,
 				15A1321520EC1960006245E7 /* CardViewController.swift in Sources */,
