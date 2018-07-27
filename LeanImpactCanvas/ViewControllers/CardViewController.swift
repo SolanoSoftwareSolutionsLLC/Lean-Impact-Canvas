@@ -19,7 +19,7 @@ class CardViewController: UIViewController {
     private var isConstrainedSizeCellsToViewSize:Bool = false
     private let DEFAULT_CELL_HEIGHT:CGFloat = 80.0
     private let SIZE_NOT_SELECTED_CELLS:CGFloat = 8.0
-    private let NUMBER_OF_CARDS: Int = 5
+    public var NUMBER_OF_CARDS: Int!
     private var positionCellSelected:Int!
     
     private var sections:[SectionCell?] = []
@@ -37,6 +37,8 @@ class CardViewController: UIViewController {
         if sections.count == 0 {
             fillSectionsArray()
         }
+        
+        print("Number of cards \(NUMBER_OF_CARDS)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +50,7 @@ class CardViewController: UIViewController {
     }
     
     private func fillSectionsArray(){
-        for _ in 0...NUMBER_OF_CARDS - 1{
+        for _ in 0...NUMBER_OF_CARDS{
             sections.append(nil)
         }
     }
@@ -61,7 +63,7 @@ class CardViewController: UIViewController {
 }
 extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return NUMBER_OF_CARDS
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

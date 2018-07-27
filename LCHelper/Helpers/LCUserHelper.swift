@@ -13,6 +13,8 @@ public class LCUserHelper{
     
     internal var root:DocumentReference? = nil
     internal var currentUserUID:String = ""
+    
+    public var currentUser:LCUser? = nil
 
     /******************************************************************/
     //----------------------------------------------------------------//
@@ -30,9 +32,10 @@ public class LCUserHelper{
      Return:
         [PROJECT_NAME:FIRESTORE/PATH/TO/PROJECT]
      */
-    public func userProjects(completion:@escaping (_ dataDict : [LCProject])->()){
-        let data = helper.projectHelper().getProjects(forUser: currentUserUID)
-        completion(data)
+    public func userProjects(user:LCUser, completion:@escaping (_ dataDict : [LCProject])->()){
+        helper.projectHelper().getProjects(forUser: user) { (projectsArr) in
+            completion(projectsArr)
+        }
     }
     /*user()
      Purpose:
@@ -41,10 +44,14 @@ public class LCUserHelper{
         This method is included for convience purposes and should
         be seldom used!
      */
-    public func user() -> User?{
-        return helper.services().auth()?.currentUser
+    public func lcUser() -> LCUser?{
+        let ref:DocumentReference = (helper.services().firestore()?
+            .document(LCModels.USER_ROOT(forUser: helper.authHelper().GIDInstance().currentUser.userID)))!
+        return LCUser(ref: ref)
     }
-    
+    public func fsUser () -> User? {
+        return Auth.auth().currentUser
+    }
     /*user()
      Purpose:
         Client access to the current user's UID

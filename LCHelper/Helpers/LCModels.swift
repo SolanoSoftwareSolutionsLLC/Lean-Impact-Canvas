@@ -17,12 +17,12 @@ internal class LCModels {
     static let DECKS_KEYWORD = "DECKS"
     static let SECTIONS_KEYWORD = "SECTIONS"
     static let PROJECT_NAME_KEYWORD = "name"
-    static let DECK_SECTION_ORDER_KEYWORD = "sectionsOrder"
+    static let CARD_ORDER_KEYWORD = "cardOrder"
     
     /*STRING REPLACEMENT CONSTANTS*/
-    static let UID_KEYWORD = "$UID"
-    static let PID_KEYWORD = "$PID"
-    static let DID_KEYWORD = "$DID"
+    private static let UID_KEYWORD = "$UID"
+    private static let PID_KEYWORD = "$PID"
+    private static let DID_KEYWORD = "$DID"
 
     
     /******************************************************************/

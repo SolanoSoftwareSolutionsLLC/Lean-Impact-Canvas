@@ -37,10 +37,9 @@
 		1590AEE120D17A2900151B80 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE020D17A2900151B80 /* ProjectsViewController.swift */; };
 		1590AEE320D2C7A200151B80 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE220D2C7A200151B80 /* ProjectCell.swift */; };
 		1590AEE520D2D88000151B80 /* LCProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE420D2D88000151B80 /* LCProject.swift */; };
-		1590AEE720D2ED0600151B80 /* LCProjectDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE620D2ED0600151B80 /* LCProjectDeck.swift */; };
-		1590AEE920D2ED3700151B80 /* LCDeckSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE820D2ED3700151B80 /* LCDeckSection.swift */; };
+		1590AEE720D2ED0600151B80 /* LCDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE620D2ED0600151B80 /* LCDeck.swift */; };
+		1590AEE920D2ED3700151B80 /* LCCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1590AEE820D2ED3700151B80 /* LCCard.swift */; };
 		15A1321120EC1489006245E7 /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321020EC1489006245E7 /* DecksViewController.swift */; };
-		15A1321320EC180E006245E7 /* SectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321220EC180E006245E7 /* SectionsViewController.swift */; };
 		15A1321520EC1960006245E7 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321420EC1960006245E7 /* CardViewController.swift */; };
 		15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321A20EC19F1006245E7 /* PresentationViewController.swift */; };
 		15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321C20EEA1D7006245E7 /* SectionCell.swift */; };
@@ -59,6 +58,8 @@
 		15C2DACC20C059CF0047BC0A /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */; };
 		15C2DAD220C060020047BC0A /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */; };
 		15C2DAD420C0602C0047BC0A /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */; };
+		15D16CFF210A3CAE00583388 /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D16CFE210A3CAE00583388 /* DeckCell.swift */; };
+		15D16D01210A46BB00583388 /* LCUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D16D00210A46BB00583388 /* LCUser.swift */; };
 		15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAA3B120CAE9BD0022E95C /* OrientationUtility.swift */; };
 		15F3D0F720B7AE91009A7D64 /* LCProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */; };
 		15F3D0F920B7AEAB009A7D64 /* LCUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */; };
@@ -152,10 +153,9 @@
 		1590AEE020D17A2900151B80 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		1590AEE220D2C7A200151B80 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		1590AEE420D2D88000151B80 /* LCProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCProject.swift; sourceTree = "<group>"; };
-		1590AEE620D2ED0600151B80 /* LCProjectDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCProjectDeck.swift; sourceTree = "<group>"; };
-		1590AEE820D2ED3700151B80 /* LCDeckSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeckSection.swift; sourceTree = "<group>"; };
+		1590AEE620D2ED0600151B80 /* LCDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeck.swift; sourceTree = "<group>"; };
+		1590AEE820D2ED3700151B80 /* LCCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCCard.swift; sourceTree = "<group>"; };
 		15A1321020EC1489006245E7 /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
-		15A1321220EC180E006245E7 /* SectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsViewController.swift; sourceTree = "<group>"; };
 		15A1321420EC1960006245E7 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		15A1321A20EC19F1006245E7 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		15A1321C20EEA1D7006245E7 /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
@@ -182,6 +182,8 @@
 		15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
 		15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
+		15D16CFE210A3CAE00583388 /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
+		15D16D00210A46BB00583388 /* LCUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCUser.swift; sourceTree = "<group>"; };
 		15EAA3B120CAE9BD0022E95C /* OrientationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationUtility.swift; sourceTree = "<group>"; };
 		15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCProjectHelper.swift; sourceTree = "<group>"; };
 		15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCUserHelper.swift; sourceTree = "<group>"; };
@@ -280,7 +282,6 @@
 				15A816D120ACBDBD005898C2 /* SignInViewController.swift */,
 				1590AEE020D17A2900151B80 /* ProjectsViewController.swift */,
 				15A1321020EC1489006245E7 /* DecksViewController.swift */,
-				15A1321220EC180E006245E7 /* SectionsViewController.swift */,
 				15A1321420EC1960006245E7 /* CardViewController.swift */,
 				15A1321A20EC19F1006245E7 /* PresentationViewController.swift */,
 			);
@@ -292,6 +293,7 @@
 			children = (
 				1590AEE220D2C7A200151B80 /* ProjectCell.swift */,
 				15A1321C20EEA1D7006245E7 /* SectionCell.swift */,
+				15D16CFE210A3CAE00583388 /* DeckCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -367,16 +369,9 @@
 		15B87AFE20B71C2300BBD11B /* LCHelper */ = {
 			isa = PBXGroup;
 			children = (
-				15AABEDF20B3367200C0550E /* LCHelper.swift */,
-				15AABEE220B36DD500C0550E /* LCModels.swift */,
-				1575675720C97AD50038C1C6 /* LCDebug.swift */,
-				155553F420BF075600EB312A /* LCServiceHelper.swift */,
-				15507B0A20C04E3B00D8EBDE /* LCAuthHelper.swift */,
-				15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */,
-				1590AEE420D2D88000151B80 /* LCProject.swift */,
-				15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */,
-				1590AEE620D2ED0600151B80 /* LCProjectDeck.swift */,
-				1590AEE820D2ED3700151B80 /* LCDeckSection.swift */,
+				15D16D02210A46D500583388 /* User */,
+				15D16D03210A46EC00583388 /* Helpers */,
+				15D16D04210A470600583388 /* Project */,
 				15B87B0020B71C2300BBD11B /* Info.plist */,
 				15B87AFF20B71C2300BBD11B /* LCHelper.h */,
 				157E51D120BF2ECC001EE79A /* Firebase.h */,
@@ -404,6 +399,38 @@
 				1507F6B620C04CBF00966BD8 /* nanopb.framework */,
 			);
 			path = LCHelper;
+			sourceTree = "<group>";
+		};
+		15D16D02210A46D500583388 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				15D16D00210A46BB00583388 /* LCUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		15D16D03210A46EC00583388 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */,
+				15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */,
+				15AABEDF20B3367200C0550E /* LCHelper.swift */,
+				155553F420BF075600EB312A /* LCServiceHelper.swift */,
+				15507B0A20C04E3B00D8EBDE /* LCAuthHelper.swift */,
+				15AABEE220B36DD500C0550E /* LCModels.swift */,
+				1575675720C97AD50038C1C6 /* LCDebug.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		15D16D04210A470600583388 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				1590AEE420D2D88000151B80 /* LCProject.swift */,
+				1590AEE620D2ED0600151B80 /* LCDeck.swift */,
+				1590AEE820D2ED3700151B80 /* LCCard.swift */,
+			);
+			path = Project;
 			sourceTree = "<group>";
 		};
 		6CB09F09F92D8BF9F9D73D7D /* Frameworks */ = {
@@ -793,9 +820,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D16CFF210A3CAE00583388 /* DeckCell.swift in Sources */,
 				1590AEE120D17A2900151B80 /* ProjectsViewController.swift in Sources */,
 				15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */,
-				15A1321320EC180E006245E7 /* SectionsViewController.swift in Sources */,
 				15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */,
 				15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */,
 				15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */,
@@ -831,10 +858,11 @@
 				15B87B1C20B71C4100BBD11B /* LCModels.swift in Sources */,
 				155553F520BF075600EB312A /* LCServiceHelper.swift in Sources */,
 				15B87B1B20B71C4100BBD11B /* LCHelper.swift in Sources */,
-				1590AEE920D2ED3700151B80 /* LCDeckSection.swift in Sources */,
-				1590AEE720D2ED0600151B80 /* LCProjectDeck.swift in Sources */,
+				1590AEE920D2ED3700151B80 /* LCCard.swift in Sources */,
+				1590AEE720D2ED0600151B80 /* LCDeck.swift in Sources */,
 				1590AEE520D2D88000151B80 /* LCProject.swift in Sources */,
 				15507B0B20C04E3B00D8EBDE /* LCAuthHelper.swift in Sources */,
+				15D16D01210A46BB00583388 /* LCUser.swift in Sources */,
 				1575675820C97AD50038C1C6 /* LCDebug.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

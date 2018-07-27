@@ -19,24 +19,26 @@ class ProjectsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        profileBttn.sd_setBackgroundImage(with: helper.userHelper().user()?.photoURL,
+        profileBttn.sd_setBackgroundImage(with: helper.userHelper().fsUser()?.photoURL,
                                           for: UIControlState.normal, completed: nil)
-    
+        
         projectsCollectionView.delegate = self
         projectsCollectionView.dataSource = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.global().async {
-            self.helper.userHelper().userProjects(completion: { (data) in
-                DispatchQueue.main.async {
-                    self.projects = data
-                    self.projectsCollectionView.reloadData()
-                }
-            })
-        }
+        load()
     }
-
+    
+    private func load(){
+        self.helper.userHelper().userProjects(user: self.helper.currentUser!, completion: { (data) in
+            DispatchQueue.main.async {
+                self.projects = data
+                self.projectsCollectionView.reloadData()
+            }
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,33 +64,35 @@ class ProjectsViewController: UIViewController {
     
     @IBAction func didPressAddProjectBttn(_ sender: Any) {
     }
-  
-
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is DecksViewController{
             let dest:DecksViewController = segue.destination as! DecksViewController
-            let projIndex:Int = sender as! Int
-            
-            dest.DECKS = projects[projIndex].DECKS
+            dest.proj = projects[sender as! Int]
         }
     }
-
+    
 }
 extension ProjectsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:ProjectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "projectCell", for: indexPath) as! ProjectCell
         
         if projects != nil{
-            cell.TitleLabel.text = projects[indexPath.row].NAME
+            print("CELL NAME: \(projects[indexPath.row])")
+            cell.TitleLabel.text = projects[indexPath.row].name
             cell.ProjectDescriptionTextField.text = "This is a test of the description"
-        
         }
         
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDecksSegue", sender: indexPath.row)
+        projects[indexPath.row].loadDecks { (success) in
+            performSegue(withIdentifier: "toDecksSegue", sender: indexPath.row)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,6 +101,7 @@ extension ProjectsViewController:UICollectionViewDelegate, UICollectionViewDataS
         }
         return 0
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

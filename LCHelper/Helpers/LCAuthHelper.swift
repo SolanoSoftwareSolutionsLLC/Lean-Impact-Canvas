@@ -28,6 +28,13 @@ public class LCAuthHelper: NSObject {
         
         self.sharedGID = GIDSignIn.sharedInstance()
         
+        if isSignedIn(){
+            let ref:DocumentReference = (helper?.services().firestore()?
+                .document(LCModels.USER_ROOT(forUser: (helper?.services().auth()?.currentUser?.uid)!)))!
+            
+            helper?.currentUser = LCUser(ref: ref)
+        }
+        
 //        //DEBUGGING
 //        print(LCDebug.debug(fromWhatClass: "LCAuthHelper",
 //        message: "Initilized! Current client ID: \(GIDSignIn.sharedInstance().clientID)"))
@@ -55,6 +62,11 @@ public class LCAuthHelper: NSObject {
         DispatchQueue.global().async {
             self.group.enter()
             self.sharedGID?.signIn()
+            
+            let ref:DocumentReference = (self.helper?.services().firestore()?
+                .document(LCModels.USER_ROOT(forUser: (self.helper?.services().auth()?.currentUser?.uid)!)))!
+            self.helper?.currentUser = LCUser(ref: ref)
+            
             self.group.wait()
             
             completion()
@@ -72,6 +84,7 @@ public class LCAuthHelper: NSObject {
             self.group.enter()
             //self.sharedGID?.signOut()
             self.sharedGID?.disconnect()
+            self.helper?.currentUser = nil
             self.group.wait()
             
             completion()

@@ -12,6 +12,7 @@ public class LCHelper {
         
     private static let SHARED:LCHelper = LCHelper()
     
+    public var currentUser:LCUser?
     private var SERVICES_HELPER:LCServiceHelper?
     private var AUTH_HELPER:LCAuthHelper?
     private var USER_HELPER:LCUserHelper?
