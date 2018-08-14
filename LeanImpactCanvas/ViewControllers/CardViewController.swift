@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LCHelper
 
 class CardViewController: UIViewController {
     
@@ -14,16 +15,21 @@ class CardViewController: UIViewController {
     private var firstIndex:IndexPath!
     private var secondIndex:IndexPath!
     
+    public var deck:LCDeck!
+    private var cardListeners:[ListenerRegistration] = []
+    private var cards:[String:LCCard] = [:]
+    private var sortedCards:[LCCard] = []
+    
     private let colors:[UIColor]  = [.red, .blue, .black, .brown, .purple]
     
     private var isConstrainedSizeCellsToViewSize:Bool = false
     private let DEFAULT_CELL_HEIGHT:CGFloat = 80.0
     private let SIZE_NOT_SELECTED_CELLS:CGFloat = 8.0
-    public var NUMBER_OF_CARDS: Int!
     private var positionCellSelected:Int!
     
-    private var sections:[SectionCell?] = []
+    private var sectionCells:[String:SectionCell] = [:]
     private var activeCellIndex:IndexPath? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,25 +39,49 @@ class CardViewController: UIViewController {
         
         collectionView.frame.size.width = view.frame.width
         collectionView.frame.size.height = view.frame.height
-        
-        if sections.count == 0 {
-            fillSectionsArray()
-        }
-        
-        print("Number of cards \(NUMBER_OF_CARDS)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         OrientationUtility.lockOrientation(.allButUpsideDown)
-
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        OrientationUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        var listener:ListenerRegistration
+        
+        for ref in deck.cardOrder{
+            listener = ref.addSnapshotListener({ (snap, err) in
+                if err == nil{
+                    let card = LCCard(data: snap)
+                    print("CARD ID HERE: \(card.id)")
+                    self.cards[card.id] = card
+                    self.sortCards()
+                }else{
+                    
+                }
+            })
+            self.cardListeners.append(listener)
+        }
     }
     
-    private func fillSectionsArray(){
-        for _ in 0...NUMBER_OF_CARDS{
-            sections.append(nil)
+    override func viewDidDisappear(_ animated: Bool) {
+        OrientationUtility.lockOrientation(.portrait)
+
+        for listener in cardListeners{
+            listener.remove()
+        }
+        cardListeners.removeAll()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            self.performSegue(withIdentifier: "toPresentationSegue", sender: "toPresentation")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if sender as! String == "toPresentation"{
+            let dest = segue.destination as! PresentationViewController
+            dest.cards = sortedCards
+        }else{
+            OrientationUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         }
     }
     
@@ -60,10 +90,22 @@ class CardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func sortCards(){
+        sortedCards = []
+        for ref in deck.cardOrder{
+            let id = ref.path.replacingOccurrences(of: "CARDS/", with: "")
+            print("Cards : \(cards)")
+            print("Searching for ID: \(id)")
+            sortedCards.append(cards[id]!)
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
 }
 extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return NUMBER_OF_CARDS
+        return sortedCards.count
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -71,18 +113,24 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print(collectionView.numberOfItems(inSection: 0))
+        let id = sortedCards[indexPath.row].id
         
-        if sections[indexPath.row] != nil {
+        if sectionCells[id] != nil {
             print("returning already existing cell")
-            return sections[indexPath.row]!
+            return sectionCells[id]!
         }
         
         print("returning new cell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! SectionCell
+        let card = sortedCards[indexPath.row]
+        
         cell.backgroundColor = colors[indexPath.row]
         cell.WIDTH = collectionView.frame.size.width
         
-        sections[indexPath.row] = cell
+        cell.label.text = card.title
+        cell.numOfImages = card.imageURLS.count
+        
+        sectionCells[id] = cell
         return cell
     }
     
@@ -102,10 +150,6 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                 activeCellIndex = nil
                 UIView.animate(withDuration: 0.2, animations: {
                     newActiveCell.frame.size.height = SectionCell.INACTIVE_HEIGHT
-
-                    
-                    
-                    
                 }) { (complete) in
                     let skip = indexPath.row
                     var otherCells:[IndexPath] = []
@@ -184,8 +228,6 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                     otherCells.append(tempIndex)
                     i += 1
                 }
-                
-                
                 collectionView.performBatchUpdates({
                     collectionView.reloadItems(at: otherCells)
                     
@@ -193,20 +235,14 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                     newActiveCell.frame.size.height = SectionCell.ACTIVE_HEIGHT
 
                 })
-                
             }) { (complete) in
                 
             }
         }
     }
-    
-    
-    
 }
 
-
 extension CardViewController:UICollectionViewDelegateFlowLayout{
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if let cell = collectionView.cellForItem(at: indexPath){
@@ -216,53 +252,5 @@ extension CardViewController:UICollectionViewDelegateFlowLayout{
             //print("returning default size")
             return CGSize(width: collectionView.frame.size.width, height: SectionCell.INACTIVE_HEIGHT)
         }
-        
-
-        
-        
-        //        if !cell.active{
-        //            if !isConstrainedSizeCellsToViewSize{
-        //                return CGSize(width: collectionView.bounds.size.width, height: DEFAULT_CELL_HEIGHT)
-        //
-        //            }
-        //            else{
-        //                return CGSize(width: collectionView.bounds.size.width, height:collectionView.bounds.size.height/CGFloat(collectionView.numberOfItems(inSection: 0)));
-        //            }
-        //        }else{
-        //            if indexPath.row == 0{
-        //                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.height - ((CGFloat(NUMBER_OF_CARDS))*SIZE_NOT_SELECTED_CELLS));
-        //            }
-        //                //This is to create the depth appearance for the not selected cells, tweak the default width factor(0.92) and the incremental value (4) as you wish
-        //            else if (indexPath.row < (NUMBER_OF_CARDS - 1)){
-        //                return CGSize(width:(0.92 * collectionView.bounds.size.width) + CGFloat(4.0 * Double(indexPath.row)),
-        //                              height: SIZE_NOT_SELECTED_CELLS);
-        //            }
-        //
-        //            //And the final cell (double than the others)
-        //            else{
-        //                return CGSize(width: collectionView.bounds.size.width, height: 2 * SIZE_NOT_SELECTED_CELLS);
-        //            }
-        //        }
     }
-    
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

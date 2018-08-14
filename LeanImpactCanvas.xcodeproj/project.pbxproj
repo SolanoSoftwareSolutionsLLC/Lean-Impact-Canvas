@@ -63,6 +63,9 @@
 		15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EAA3B120CAE9BD0022E95C /* OrientationUtility.swift */; };
 		15F3D0F720B7AE91009A7D64 /* LCProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */; };
 		15F3D0F920B7AEAB009A7D64 /* LCUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */; };
+		15FD0EB6212207F200132B85 /* whiteBG.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 15FD0EB5212207F100132B85 /* whiteBG.pdf */; };
+		15FD0EB921232A9300132B85 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD0EB821232A9300132B85 /* NewProjectViewController.swift */; };
+		15FF644121232F1C009CC977 /* FirebaseFunctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FF644021232F1C009CC977 /* FirebaseFunctions.framework */; };
 		773462008CB81ED23DFC02A1 /* Pods_LeanImpactCanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821DAFEA81F71AC45A27C037 /* Pods_LeanImpactCanvasTests.framework */; };
 		881A3DD5629E1B4AF7476234 /* Pods_FSHelperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */; };
 		8C4B8BA4CE4A7A75CAC04417 /* Pods_FSHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B827E9E6A4E791DB2F1DF8 /* Pods_FSHelper.framework */; };
@@ -187,6 +190,9 @@
 		15EAA3B120CAE9BD0022E95C /* OrientationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationUtility.swift; sourceTree = "<group>"; };
 		15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCProjectHelper.swift; sourceTree = "<group>"; };
 		15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCUserHelper.swift; sourceTree = "<group>"; };
+		15FD0EB5212207F100132B85 /* whiteBG.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = whiteBG.pdf; sourceTree = "<group>"; };
+		15FD0EB821232A9300132B85 /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		15FF644021232F1C009CC977 /* FirebaseFunctions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseFunctions.framework; sourceTree = "<group>"; };
 		35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSHelperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45000768EF3534D827F02E96 /* Pods-LeanImpactCanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasTests/Pods-LeanImpactCanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53D7280FB309395F73341D19 /* Pods-FSHelperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelperTests/Pods-FSHelperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +252,7 @@
 				1507F6CE20C04CD500966BD8 /* BoringSSL.framework in Frameworks */,
 				1507F6D220C04CD500966BD8 /* gRPC-RxLibrary.framework in Frameworks */,
 				1507F6BE20C04CC000966BD8 /* FirebaseInstanceID.framework in Frameworks */,
+				15FF644121232F1C009CC977 /* FirebaseFunctions.framework in Frameworks */,
 				1507F6BD20C04CC000966BD8 /* nanopb.framework in Frameworks */,
 				15C2DAD420C0602C0047BC0A /* GoogleSignInDependencies.framework in Frameworks */,
 				1507F6D120C04CD500966BD8 /* gRPC-ProtoRPC.framework in Frameworks */,
@@ -280,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				15A816D120ACBDBD005898C2 /* SignInViewController.swift */,
+				15FD0EB821232A9300132B85 /* NewProjectViewController.swift */,
 				1590AEE020D17A2900151B80 /* ProjectsViewController.swift */,
 				15A1321020EC1489006245E7 /* DecksViewController.swift */,
 				15A1321420EC1960006245E7 /* CardViewController.swift */,
@@ -327,6 +335,7 @@
 		15A816CE20ACBDBD005898C2 /* LeanImpactCanvas */ = {
 			isa = PBXGroup;
 			children = (
+				15FD0EB7212207F500132B85 /* PDFAssets */,
 				15A816CF20ACBDBD005898C2 /* AppDelegate.swift */,
 				15A816D320ACBDBD005898C2 /* Main.storyboard */,
 				15A816D620ACBDBF005898C2 /* Assets.xcassets */,
@@ -377,6 +386,7 @@
 				157E51D120BF2ECC001EE79A /* Firebase.h */,
 				15507B0F20C04F4A00D8EBDE /* GoogleSignIn.bundle */,
 				1507F6D320C04CDE00966BD8 /* gRPCCertificates.bundle */,
+				15FF644021232F1C009CC977 /* FirebaseFunctions.framework */,
 				15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */,
 				15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */,
 				15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */,
@@ -412,9 +422,9 @@
 		15D16D03210A46EC00583388 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				15AABEDF20B3367200C0550E /* LCHelper.swift */,
 				15F3D0F620B7AE91009A7D64 /* LCProjectHelper.swift */,
 				15F3D0F820B7AEAB009A7D64 /* LCUserHelper.swift */,
-				15AABEDF20B3367200C0550E /* LCHelper.swift */,
 				155553F420BF075600EB312A /* LCServiceHelper.swift */,
 				15507B0A20C04E3B00D8EBDE /* LCAuthHelper.swift */,
 				15AABEE220B36DD500C0550E /* LCModels.swift */,
@@ -431,6 +441,14 @@
 				1590AEE820D2ED3700151B80 /* LCCard.swift */,
 			);
 			path = Project;
+			sourceTree = "<group>";
+		};
+		15FD0EB7212207F500132B85 /* PDFAssets */ = {
+			isa = PBXGroup;
+			children = (
+				15FD0EB5212207F100132B85 /* whiteBG.pdf */,
+			);
+			path = PDFAssets;
 			sourceTree = "<group>";
 		};
 		6CB09F09F92D8BF9F9D73D7D /* Frameworks */ = {
@@ -639,6 +657,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FD0EB6212207F200132B85 /* whiteBG.pdf in Resources */,
 				15A816DA20ACBDBF005898C2 /* LaunchScreen.storyboard in Resources */,
 				15A816FE20ACC0D8005898C2 /* GoogleService-Info.plist in Resources */,
 				15A816D720ACBDBF005898C2 /* Assets.xcassets in Resources */,
@@ -823,6 +842,7 @@
 				15D16CFF210A3CAE00583388 /* DeckCell.swift in Sources */,
 				1590AEE120D17A2900151B80 /* ProjectsViewController.swift in Sources */,
 				15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */,
+				15FD0EB921232A9300132B85 /* NewProjectViewController.swift in Sources */,
 				15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */,
 				15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */,
 				15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */,
@@ -975,7 +995,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				"MODULEMAP_FILE[sdk=*]" = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1030,7 +1050,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1049,6 +1069,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YMTE95552Y;
 				INFOPLIST_FILE = LeanImpactCanvas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,6 +1091,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YMTE95552Y;
 				INFOPLIST_FILE = LeanImpactCanvas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1187,6 +1209,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LCHelper/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1228,6 +1251,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LCHelper/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

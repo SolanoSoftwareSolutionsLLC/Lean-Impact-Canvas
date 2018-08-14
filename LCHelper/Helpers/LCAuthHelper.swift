@@ -13,6 +13,7 @@ public class LCAuthHelper: NSObject {
     
     private var helper:LCHelper? = nil
     private var sharedGID:GIDSignIn? = nil
+    private var sharedAuth:Auth? = nil
     
     private let group:DispatchGroup = DispatchGroup()
     
@@ -27,13 +28,7 @@ public class LCAuthHelper: NSObject {
         GIDSignIn.sharedInstance().delegate = self
         
         self.sharedGID = GIDSignIn.sharedInstance()
-        
-        if isSignedIn(){
-            let ref:DocumentReference = (helper?.services().firestore()?
-                .document(LCModels.USER_ROOT(forUser: (helper?.services().auth()?.currentUser?.uid)!)))!
-            
-            helper?.currentUser = LCUser(ref: ref)
-        }
+        self.sharedAuth = Auth.auth()
         
 //        //DEBUGGING
 //        print(LCDebug.debug(fromWhatClass: "LCAuthHelper",
@@ -52,6 +47,9 @@ public class LCAuthHelper: NSObject {
         return self.sharedGID!
     }
     
+    public func AuthInstance() -> Auth?{
+        return self.sharedAuth
+    }
     /*signIn()
      Purpose:
      Allows client to sign into LeanCanvas and accepts
@@ -62,11 +60,6 @@ public class LCAuthHelper: NSObject {
         DispatchQueue.global().async {
             self.group.enter()
             self.sharedGID?.signIn()
-            
-            let ref:DocumentReference = (self.helper?.services().firestore()?
-                .document(LCModels.USER_ROOT(forUser: (self.helper?.services().auth()?.currentUser?.uid)!)))!
-            self.helper?.currentUser = LCUser(ref: ref)
-            
             self.group.wait()
             
             completion()
@@ -82,9 +75,7 @@ public class LCAuthHelper: NSObject {
     public func signOut(completion: @escaping ()->() ){
         DispatchQueue.global().async {
             self.group.enter()
-            //self.sharedGID?.signOut()
             self.sharedGID?.disconnect()
-            self.helper?.currentUser = nil
             self.group.wait()
             
             completion()
@@ -118,8 +109,8 @@ extension LCAuthHelper: GIDSignInDelegate{
                 if err == nil {
                     
                     //DEBUGGING
-                    print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
-                                               message: "Signed in as: \(user?.user.displayName! ?? "")!"))
+                    LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
+                                               message: "Signed in as: \(user?.user.displayName! ?? "")!")
                     
                     self.helper?.configure()
                     self.group.leave()
@@ -156,6 +147,7 @@ extension LCAuthHelper: GIDSignInDelegate{
         else{
             print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
                                        message: (error?.localizedDescription)!))
+            group.leave()
         }
     }
     

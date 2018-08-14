@@ -16,7 +16,7 @@ class SectionCell: UICollectionViewCell {
     @IBOutlet weak var textView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let colors:[UIColor] = [.red, .blue, .green]
+    private let colors:[UIColor] = [.gray]
     
     public static let IDENTIFIER:String = "sectionCell"
     private static let IMAGE_IDENTIFIER = "imageCell"
@@ -55,11 +55,10 @@ class SectionCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         print("Created with aDecoder")
         self.active = false
-        
-     
+        //self.setUp()
     }
     
-    public func setUp(){
+    private func setUp(){
         //stackView.distribution = .fillEqually
 
         collectionView.delegate = self
@@ -82,7 +81,7 @@ extension SectionCell:UICollectionViewDelegate, UICollectionViewDataSource, UICo
 //    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Searching for num of images")
-        return colors.count
+        return numOfImages
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

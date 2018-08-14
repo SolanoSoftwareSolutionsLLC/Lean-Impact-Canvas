@@ -10,12 +10,8 @@ import Foundation
 
 public class LCUserHelper{
     private let helper:LCHelper
-    
-    internal var root:DocumentReference? = nil
-    internal var currentUserUID:String = ""
-    
     public var currentUser:LCUser? = nil
-
+    
     /******************************************************************/
     //----------------------------------------------------------------//
     /******************************************************************/
@@ -25,111 +21,60 @@ public class LCUserHelper{
     /******************************************************************/
     //----------------------------------------------------------------//
     /******************************************************************/
-    /*userProjects()
-     Purpose:
-        Client access to a dictionary of the current user's projects. Actual
-        processing is handled by LCProjectHelper. 
-     Return:
-        [PROJECT_NAME:FIRESTORE/PATH/TO/PROJECT]
-     */
-    public func userProjects(user:LCUser, completion:@escaping (_ dataDict : [LCProject])->()){
-        helper.projectHelper().getProjects(forUser: user) { (projectsArr) in
-            completion(projectsArr)
-        }
-    }
+    
     /*user()
      Purpose:
-        Client access to Auth.currentUser
+     Client access to Auth.currentUser
      WARNING:
-        This method is included for convience purposes and should
-        be seldom used!
+     This method is included for convience purposes and should
+     be seldom used!
      */
-    public func lcUser() -> LCUser?{
-        let ref:DocumentReference = (helper.services().firestore()?
-            .document(LCModels.USER_ROOT(forUser: helper.authHelper().GIDInstance().currentUser.userID)))!
-        return LCUser(ref: ref)
-    }
     public func fsUser () -> User? {
         return Auth.auth().currentUser
     }
-    /*user()
-     Purpose:
-        Client access to the current user's UID
-     */
-    public func userID() -> String{
-        return currentUserUID
-    }
-    
     /******************************************************************/
     //----------------------------------------------------------------//
     /******************************************************************/
-    /*createUser()
-     Purpose:
-        Creates a new user in the Firestore DB if
-        the user does not alreay exsists
-     */
-    internal func createUser(){
-        if helper.ready(){
-            userExists { (inDB) in
-                if ( !inDB ){
-                    
-                    print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                               message: "Creating User DB"))
-                    
-                    let currUser = self.helper.services().auth()?.currentUser
-                    let data = LCModels.NEW_USER(usr: currUser!)
-                    
-                    self.root?.setData(data, completion: { (err) in
-                        if (err != nil) {
-                            print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                                       message: "@createUser() \(err?.localizedDescription ?? "")"))
-                        }
-                    })
-                }else{
-                    print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                               message: "User profile already in database."))
-                }
-            }
-        }else{
-            print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-                                       message: "Could not create user. FSHelper not ready. Run <FSHelperRef>.setUp() and try again"))
-        }
+    public func breakDown(){
+        currentUser = nil
+    }
+    
+    internal func setUp(){
+        let authUser:User? = helper.authHelper().AuthInstance()?.currentUser
+        self.currentUser = LCUser(uid: (authUser?.uid)!)
     }
     
     /*userExists(completion)
      Purpose:
-        Checks the Firestore DB for the current users record
+     Checks the Firestore DB for the current users record
      Notes:
-        This method requires a completion block as all Firestore
-        requests are async calls. Call this method as follows:
+     This method requires a completion block as all Firestore
+     requests are async calls. Call this method as follows:
      
-        /*Start Example*/
-        userExists{(inDB:Bool) in
-            if inDB {
-                //Perform work if user already exists
-            }else{
-                //Perform work if user does NOT already exist
-            }
-        }
-        /*End Example*/
+     /*Start Example*/
+     userExists{(inDB:Bool) in
+     if inDB {
+     //Perform work if user already exists
+     }else{
+     //Perform work if user does NOT already exist
+     }
+     }
+     /*End Example*/
      
      */
-    private func userExists(completion: @escaping (Bool)->()) {
-        let docRef = helper.services().firestore()?
-            .document("USERS/\(currentUserUID)")
-        
-        docRef?.getDocument { (document, error) in
+    internal func checkUserExists(ref:DocumentReference!,completion: @escaping (Bool)->()) {
+        ref?.getDocument { (document, error) in
             var inDB:Bool = false
             
             if let document = document, document.exists {
                 inDB = true
-//                //DEBUGGING
-//                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-//                                           message: "User exsists"))
+                //DEBUGGING
+                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
+                                           message: "User exsists"))
             } else {
-//                //DEBUGGING
-//                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
-//                                           message: "User does not exsist"))
+                //DEBUGGING
+                print(LCDebug.debugMessage(fromWhatClass: "LCUserHelper",
+                                           message: "User does not exsist"))
             }
             completion(inDB)
         }

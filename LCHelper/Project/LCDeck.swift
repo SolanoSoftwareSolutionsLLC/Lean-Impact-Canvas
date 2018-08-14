@@ -12,43 +12,50 @@ public class LCDeck{
     
     public var cards:[LCCard] = []
     public var title:String = ""
-    private var sectionOrder:[DocumentReference] = []
+    public var cardOrder:[DocumentReference] = []
+    public var id:String = ""
     
-    private var ref:DocumentReference
+    //private var ref:DocumentReference
     
-    init(ref:DocumentReference) {
-        self.ref = ref
+    public init (snap:DocumentSnapshot){
+        self.id = snap.get("id") as! String
+        self.title = snap.get("title") as! String
+        self.cardOrder = snap.get("cardOrder") as! [DocumentReference]
     }
+
+    internal init() {}
     
-    public func setUp(ref:DocumentReference, completion: ()->()){
-        LCDebug.debugMessage(fromWhatClass: "LCDeck",
-                             message: "Setting up deck: \(ref.path)")
-        
-        let group:DispatchGroup = DispatchGroup()
-        group.enter()
-        
+    internal static func getDeck(withRef ref:DocumentReference, completion: @escaping (LCDeck?)->()){
+        var deck:LCDeck? = nil
         ref.getDocument { (snap, err) in
             if err == nil{
+                deck = LCDeck()
                 LCDebug.debugMessage(fromWhatClass: "LCProjectDeck",
                                      message: "Firestore data recieved for deck: \n"
+                                        
                                         + String(describing: snap?.data()))
-                self.title = snap?.get("title") as! String
-                self.sectionOrder = snap?.get(LCModels.CARD_ORDER_KEYWORD) as! [DocumentReference]
-                //self.parseCards()
+                deck?.title = snap?.get("title") as! String
+                deck?.cardOrder = snap?.get(LCModels.CARD_ORDER_KEYWORD) as! [DocumentReference]
+            }else{
+                LCDebug.debugMessage(fromWhatClass: "LCDeck",
+                                     message: "Unable to get deck due to error: \(err)")
             }
-            group.leave()
-            print("PASS THE DECK LEAVE!\n")
+            completion(deck)
+        }
+    }
+    
+    public func loadCards(){
+        let group:DispatchGroup = DispatchGroup()
+        for card in self.cardOrder{
+            group.enter()
+            card.getDocument { (snap, err) in
+                print("IN HERE PROCESSING A DECK")
+                if err != nil {
+                    self.cards.append(LCCard(data: snap))
+                }
+                group.leave()
+            }
         }
         group.wait()
-        
-        completion()
     }
-    
-    public func parseCards(completion: ()->()){
-        for section in sectionOrder{
-            self.cards.append(LCCard(ref:section))
-        }
-        completion()
-    }
-    
 }
