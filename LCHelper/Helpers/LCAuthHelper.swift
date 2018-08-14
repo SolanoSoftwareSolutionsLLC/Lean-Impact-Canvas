@@ -13,6 +13,7 @@ public class LCAuthHelper: NSObject {
     
     private var helper:LCHelper? = nil
     private var sharedGID:GIDSignIn? = nil
+    private var sharedAuth:Auth? = nil
     
     private let group:DispatchGroup = DispatchGroup()
     
@@ -27,6 +28,7 @@ public class LCAuthHelper: NSObject {
         GIDSignIn.sharedInstance().delegate = self
         
         self.sharedGID = GIDSignIn.sharedInstance()
+        self.sharedAuth = Auth.auth()
         
 //        //DEBUGGING
 //        print(LCDebug.debug(fromWhatClass: "LCAuthHelper",
@@ -45,6 +47,9 @@ public class LCAuthHelper: NSObject {
         return self.sharedGID!
     }
     
+    public func AuthInstance() -> Auth?{
+        return self.sharedAuth
+    }
     /*signIn()
      Purpose:
      Allows client to sign into LeanCanvas and accepts
@@ -70,7 +75,6 @@ public class LCAuthHelper: NSObject {
     public func signOut(completion: @escaping ()->() ){
         DispatchQueue.global().async {
             self.group.enter()
-            //self.sharedGID?.signOut()
             self.sharedGID?.disconnect()
             self.group.wait()
             
@@ -105,8 +109,8 @@ extension LCAuthHelper: GIDSignInDelegate{
                 if err == nil {
                     
                     //DEBUGGING
-                    print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
-                                               message: "Signed in as: \(user?.user.displayName! ?? "")!"))
+                    LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
+                                               message: "Signed in as: \(user?.user.displayName! ?? "")!")
                     
                     self.helper?.configure()
                     self.group.leave()
@@ -143,6 +147,7 @@ extension LCAuthHelper: GIDSignInDelegate{
         else{
             print(LCDebug.debugMessage(fromWhatClass: "LCAuthHelper",
                                        message: (error?.localizedDescription)!))
+            group.leave()
         }
     }
     

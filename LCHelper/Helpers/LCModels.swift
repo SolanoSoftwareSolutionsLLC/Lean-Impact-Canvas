@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal class LCModels {
+public class LCModels {
     /*MODEL CONSTANTS*/
     static let INFO_KEYWORD = "INFO"
     static let PROJECTS_KEYWORD = "PROJECTS"
@@ -17,12 +17,12 @@ internal class LCModels {
     static let DECKS_KEYWORD = "DECKS"
     static let SECTIONS_KEYWORD = "SECTIONS"
     static let PROJECT_NAME_KEYWORD = "name"
-    static let DECK_SECTION_ORDER_KEYWORD = "sectionsOrder"
+    static let CARD_ORDER_KEYWORD = "cardOrder"
     
     /*STRING REPLACEMENT CONSTANTS*/
-    static let UID_KEYWORD = "$UID"
-    static let PID_KEYWORD = "$PID"
-    static let DID_KEYWORD = "$DID"
+    private static let UID_KEYWORD = "$UID"
+    private static let PID_KEYWORD = "$PID"
+    private static let DID_KEYWORD = "$DID"
 
     
     /******************************************************************/
@@ -38,15 +38,15 @@ internal class LCModels {
         USERS_KEYWORD.appending("/").appending(UID_KEYWORD).appending("/").appending(PROJECTS_KEYWORD)
     
     //Project
-    static let PROJECT_ROOT_PATH =
+    private static let PROJECT_ROOT_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD)
-    static let PROJECT_INFO_PATH =
+    private static let PROJECT_INFO_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(INFO_KEYWORD)
-    static let PROJECT_USERS_PATH =
+    private static let PROJECT_USERS_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(USERS_KEYWORD)
-    static let PROJECT_DECKS_PATH =
+    private static let PROJECT_DECKS_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(DECK_KEYWORD)
-    static let PROJECT_DECK_PATH =
+    private static let PROJECT_DECK_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(DECK_KEYWORD).appending("/").appending(DID_KEYWORD)
     
     /******************************************************************/
@@ -89,7 +89,7 @@ internal class LCModels {
      Purpose:
         Provides the root to the user's document
      */
-    static func USER_ROOT(forUser usr:String) -> String{
+    public static func USER_ROOT(forUser usr:String) -> String{
         return USER_ROOT_PATH.replacingOccurrences(of: UID_KEYWORD, with: usr)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseFunctions
 
 public class LCServiceHelper{
     internal var FSRoot:Firestore? = nil
@@ -19,18 +20,23 @@ public class LCServiceHelper{
     
     internal func configure(){
         FirebaseApp.configure()
+        FSRoot = firestore()
     }
     
-    internal func app() ->FirebaseApp?{
+    public func app() ->FirebaseApp?{
         return FirebaseApp.app()
     }
     
-    internal func firestore() ->Firestore?{
+    public func firestore() ->Firestore?{
         Firestore.firestore().settings.areTimestampsInSnapshotsEnabled = true
         return Firestore.firestore()
     }
     
-    internal func auth() -> Auth?{
+    public func auth() -> Auth?{
         return Auth.auth()
+    }
+    
+    public func function() -> Functions {
+        return Functions.functions()
     }
 }

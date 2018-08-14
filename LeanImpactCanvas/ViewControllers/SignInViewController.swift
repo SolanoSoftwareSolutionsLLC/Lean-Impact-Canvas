@@ -15,6 +15,7 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
     
     @IBOutlet weak var signInBttn: UIButton!
     
+    private var user:LCUser!
     private var helper:LCHelper!
     private var signedIn:Bool!{
         willSet{
@@ -25,9 +26,9 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
         
         didSet{
             DispatchQueue.main.async {
-                //                //DEBUGGING
-                //                print(LCDebug.debugMessage(fromWhatClass: "ViewController",
-                //                                           message: "value of self.signedIn set to \(self.signedIn!)"))
+                //DEBUGGING
+                print(LCDebug.debugMessage(fromWhatClass: "ViewController",
+                                           message: "value of self.signedIn set to \(self.signedIn!)"))
                 self.toggleSignInButtons()
             }
         }
@@ -36,14 +37,24 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         OrientationUtility.lockOrientation(.portrait)
-                        
+        print("MADE IT TO HERE!!!")
+
         helper = LCHelper.shared()
         helper.authHelper().GIDInstance().uiDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        signedIn = helper.authHelper().isSignedIn()
-        toProjectsView()
+        if helper.authHelper().isSignedIn(){
+            LCDebug.debugMessage(fromWhatClass: "SignInViewController",
+                                 message: "User is signed in setting current user in helper")
+            print(helper.userHelper().currentUser?.uid)
+            signedIn = true
+            toProjectsView()
+        }
+        else{
+            signedIn = false
+            toggleSignInButtons()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,9 +63,9 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
     }
     
     @IBAction func didPressSignIn(_ sender: Any) {
-//        DEBUGGING
-//        print(LCDebug.debugMessage(fromWhatClass: "ViewController",
-//                                   message: " @didPressSignIn ()"))
+        //DEBUGGING
+        LCDebug.debugMessage(fromWhatClass: "ViewController",
+                             message: " @didPressSignIn ()")
 
         helper.authHelper().signIn {
             self.signedIn = self.helper.authHelper().isSignedIn()
@@ -75,10 +86,12 @@ extension SignInViewController{
     
     private func toProjectsView(){
         if signedIn {
-            print("IN SEGUE")
+            LCDebug.debugMessage(fromWhatClass: "SignInViewController",
+                                 message: "User is signed in. Segue to projects")
             performSegue(withIdentifier: "toProjectsSegue", sender: nil)
         }else{
-            print("NO SEGUE")
+            LCDebug.debugMessage(fromWhatClass: "SignInViewController",
+                                 message: "User is NOT signed in.")
         }
     }
 }
