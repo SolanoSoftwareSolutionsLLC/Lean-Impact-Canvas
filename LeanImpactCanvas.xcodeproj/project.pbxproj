@@ -51,7 +51,6 @@
 		15A816E520ACBDBF005898C2 /* LeanImpactCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816E420ACBDBF005898C2 /* LeanImpactCanvasTests.swift */; };
 		15A816F020ACBDBF005898C2 /* LeanImpactCanvasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816EF20ACBDBF005898C2 /* LeanImpactCanvasUITests.swift */; };
 		15A816FE20ACC0D8005898C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15A816FD20ACC0D8005898C2 /* GoogleService-Info.plist */; };
-		15B87B0620B71C2300BBD11B /* LCHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B87AFD20B71C2300BBD11B /* LCHelper.framework */; };
 		15B87B0F20B71C2300BBD11B /* LCHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B87AFF20B71C2300BBD11B /* LCHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15B87B1B20B71C4100BBD11B /* LCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AABEDF20B3367200C0550E /* LCHelper.swift */; };
 		15B87B1C20B71C4100BBD11B /* LCModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AABEE220B36DD500C0550E /* LCModels.swift */; };
@@ -66,11 +65,9 @@
 		15FD0EB6212207F200132B85 /* whiteBG.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 15FD0EB5212207F100132B85 /* whiteBG.pdf */; };
 		15FD0EB921232A9300132B85 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD0EB821232A9300132B85 /* NewProjectViewController.swift */; };
 		15FF644121232F1C009CC977 /* FirebaseFunctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FF644021232F1C009CC977 /* FirebaseFunctions.framework */; };
+		4895F25CBD4931EF04A7CDDA /* Pods_LCHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A722FB4F419FC91A864663 /* Pods_LCHelper.framework */; };
 		773462008CB81ED23DFC02A1 /* Pods_LeanImpactCanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821DAFEA81F71AC45A27C037 /* Pods_LeanImpactCanvasTests.framework */; };
-		881A3DD5629E1B4AF7476234 /* Pods_FSHelperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */; };
-		8C4B8BA4CE4A7A75CAC04417 /* Pods_FSHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B827E9E6A4E791DB2F1DF8 /* Pods_FSHelper.framework */; };
 		99FC7DDEC7E4E3D086C95FBF /* Pods_LeanImpactCanvasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E428E4AACE9EC09532A8F31E /* Pods_LeanImpactCanvasUITests.framework */; };
-		CB09FFFE463AC27C2B822D3C /* Pods_FSHelper_FSHelperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8BD26095834C35C4166F18 /* Pods_FSHelper_FSHelperTests.framework */; };
 		DBB02DF0852D281EDAB6010B /* Pods_LeanImpactCanvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C667D13437F7F880722AD4 /* Pods_LeanImpactCanvas.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,20 +87,6 @@
 			remoteInfo = LeanImpactCanvas;
 		};
 		15A816EC20ACBDBF005898C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15A816C420ACBDBD005898C2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15A816CB20ACBDBD005898C2;
-			remoteInfo = LeanImpactCanvas;
-		};
-		15B87B0720B71C2300BBD11B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15A816C420ACBDBD005898C2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15B87AFC20B71C2300BBD11B;
-			remoteInfo = FSHelper;
-		};
-		15B87B0920B71C2300BBD11B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15A816C420ACBDBD005898C2 /* Project object */;
 			proxyType = 1;
@@ -181,7 +164,6 @@
 		15B87AFD20B71C2300BBD11B /* LCHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B87AFF20B71C2300BBD11B /* LCHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCHelper.h; sourceTree = "<group>"; };
 		15B87B0020B71C2300BBD11B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15B87B0520B71C2300BBD11B /* FSHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FSHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C2DACB20C059CF0047BC0A /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
 		15C2DAD120C060020047BC0A /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		15C2DAD320C0602C0047BC0A /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
@@ -193,24 +175,18 @@
 		15FD0EB5212207F100132B85 /* whiteBG.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = whiteBG.pdf; sourceTree = "<group>"; };
 		15FD0EB821232A9300132B85 /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		15FF644021232F1C009CC977 /* FirebaseFunctions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseFunctions.framework; sourceTree = "<group>"; };
-		35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSHelperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B3197E0E715179DEF69CB2C /* Pods-LCHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-LCHelper/Pods-LCHelper.release.xcconfig"; sourceTree = "<group>"; };
 		45000768EF3534D827F02E96 /* Pods-LeanImpactCanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasTests/Pods-LeanImpactCanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
-		53D7280FB309395F73341D19 /* Pods-FSHelperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelperTests/Pods-FSHelperTests.debug.xcconfig"; sourceTree = "<group>"; };
-		56B827E9E6A4E791DB2F1DF8 /* Pods_FSHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FD1961E8D00A12F6A4948CE /* Pods-FSHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelper/Pods-FSHelper.release.xcconfig"; sourceTree = "<group>"; };
 		821DAFEA81F71AC45A27C037 /* Pods_LeanImpactCanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeanImpactCanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8485DA638F8146CC83B2871B /* Pods-FSHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelper/Pods-FSHelper.debug.xcconfig"; sourceTree = "<group>"; };
+		85A722FB4F419FC91A864663 /* Pods_LCHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LCHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9819707844B413E50FBD59CB /* Pods-LeanImpactCanvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvas.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas.release.xcconfig"; sourceTree = "<group>"; };
 		A5FAE348E95823374E8F47D7 /* Pods-LeanImpactCanvasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasUITests/Pods-LeanImpactCanvasUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A5FF26467C74E851E8B74894 /* Pods-FSHelperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelperTests/Pods-FSHelperTests.release.xcconfig"; sourceTree = "<group>"; };
+		A70EE272BE7FC2455D2443B3 /* Pods-LCHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCHelper/Pods-LCHelper.debug.xcconfig"; sourceTree = "<group>"; };
 		D76617CE2E8B5D78482CB268 /* Pods-LeanImpactCanvasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasUITests/Pods-LeanImpactCanvasUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E01665C11C371E8E9426A080 /* Pods-LeanImpactCanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvasTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvasTests/Pods-LeanImpactCanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		E428E4AACE9EC09532A8F31E /* Pods_LeanImpactCanvasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeanImpactCanvasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7C667D13437F7F880722AD4 /* Pods_LeanImpactCanvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeanImpactCanvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8DC586E705D732CA482AAEF /* Pods-FSHelper-FSHelperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelper-FSHelperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelper-FSHelperTests/Pods-FSHelper-FSHelperTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F32571FEBA04643F3F562437 /* Pods-LeanImpactCanvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeanImpactCanvas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas.debug.xcconfig"; sourceTree = "<group>"; };
-		FE8BD26095834C35C4166F18 /* Pods_FSHelper_FSHelperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSHelper_FSHelperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE8E73BDD4B292311AA50587 /* Pods-FSHelper-FSHelperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSHelper-FSHelperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FSHelper-FSHelperTests/Pods-FSHelper-FSHelperTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +222,6 @@
 				15507B1720C04F9700D8EBDE /* SystemConfiguration.framework in Frameworks */,
 				15507B1520C04F8A00D8EBDE /* SafariServices.framework in Frameworks */,
 				15C2DAD220C060020047BC0A /* GoogleToolboxForMac.framework in Frameworks */,
-				8C4B8BA4CE4A7A75CAC04417 /* Pods_FSHelper.framework in Frameworks */,
 				1507F6D020C04CD500966BD8 /* gRPC-Core.framework in Frameworks */,
 				1507F6BC20C04CC000966BD8 /* FirebaseCore.framework in Frameworks */,
 				1507F6CE20C04CD500966BD8 /* BoringSSL.framework in Frameworks */,
@@ -267,16 +242,7 @@
 				1507F6CD20C04CD500966BD8 /* Protobuf.framework in Frameworks */,
 				1507F6CC20C04CD500966BD8 /* gRPC.framework in Frameworks */,
 				1507F6BA20C04CC000966BD8 /* FirebaseNanoPB.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		15B87B0220B71C2300BBD11B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15B87B0620B71C2300BBD11B /* LCHelper.framework in Frameworks */,
-				881A3DD5629E1B4AF7476234 /* Pods_FSHelperTests.framework in Frameworks */,
-				CB09FFFE463AC27C2B822D3C /* Pods_FSHelper_FSHelperTests.framework in Frameworks */,
+				4895F25CBD4931EF04A7CDDA /* Pods_LCHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +293,6 @@
 				15A816E020ACBDBF005898C2 /* LeanImpactCanvasTests.xctest */,
 				15A816EB20ACBDBF005898C2 /* LeanImpactCanvasUITests.xctest */,
 				15B87AFD20B71C2300BBD11B /* LCHelper.framework */,
-				15B87B0520B71C2300BBD11B /* FSHelperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -456,12 +421,10 @@
 			children = (
 				15507B1620C04F9600D8EBDE /* SystemConfiguration.framework */,
 				15507B1420C04F8A00D8EBDE /* SafariServices.framework */,
-				56B827E9E6A4E791DB2F1DF8 /* Pods_FSHelper.framework */,
-				35385BC47158FD62AC8326A4 /* Pods_FSHelperTests.framework */,
 				E7C667D13437F7F880722AD4 /* Pods_LeanImpactCanvas.framework */,
 				821DAFEA81F71AC45A27C037 /* Pods_LeanImpactCanvasTests.framework */,
 				E428E4AACE9EC09532A8F31E /* Pods_LeanImpactCanvasUITests.framework */,
-				FE8BD26095834C35C4166F18 /* Pods_FSHelper_FSHelperTests.framework */,
+				85A722FB4F419FC91A864663 /* Pods_LCHelper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -469,18 +432,14 @@
 		EA538685F3FC81D613262465 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8485DA638F8146CC83B2871B /* Pods-FSHelper.debug.xcconfig */,
-				5FD1961E8D00A12F6A4948CE /* Pods-FSHelper.release.xcconfig */,
-				53D7280FB309395F73341D19 /* Pods-FSHelperTests.debug.xcconfig */,
-				A5FF26467C74E851E8B74894 /* Pods-FSHelperTests.release.xcconfig */,
 				F32571FEBA04643F3F562437 /* Pods-LeanImpactCanvas.debug.xcconfig */,
 				9819707844B413E50FBD59CB /* Pods-LeanImpactCanvas.release.xcconfig */,
 				45000768EF3534D827F02E96 /* Pods-LeanImpactCanvasTests.debug.xcconfig */,
 				E01665C11C371E8E9426A080 /* Pods-LeanImpactCanvasTests.release.xcconfig */,
 				D76617CE2E8B5D78482CB268 /* Pods-LeanImpactCanvasUITests.debug.xcconfig */,
 				A5FAE348E95823374E8F47D7 /* Pods-LeanImpactCanvasUITests.release.xcconfig */,
-				E8DC586E705D732CA482AAEF /* Pods-FSHelper-FSHelperTests.debug.xcconfig */,
-				FE8E73BDD4B292311AA50587 /* Pods-FSHelper-FSHelperTests.release.xcconfig */,
+				A70EE272BE7FC2455D2443B3 /* Pods-LCHelper.debug.xcconfig */,
+				2B3197E0E715179DEF69CB2C /* Pods-LCHelper.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -509,7 +468,6 @@
 				15A816C920ACBDBD005898C2 /* Frameworks */,
 				15A816CA20ACBDBD005898C2 /* Resources */,
 				3EB39933A3C0EF044859BF0A /* [CP] Embed Pods Frameworks */,
-				F1FEBB36B146F3EB6F1B1584 /* [CP] Copy Pods Resources */,
 				1507F6B020C04C8D00966BD8 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -579,26 +537,6 @@
 			productReference = 15B87AFD20B71C2300BBD11B /* LCHelper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		15B87B0420B71C2300BBD11B /* FSHelperTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 15B87B1A20B71C2300BBD11B /* Build configuration list for PBXNativeTarget "FSHelperTests" */;
-			buildPhases = (
-				AA29517666A3FF3B5AD2FA17 /* [CP] Check Pods Manifest.lock */,
-				15B87B0120B71C2300BBD11B /* Sources */,
-				15B87B0220B71C2300BBD11B /* Frameworks */,
-				15B87B0320B71C2300BBD11B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				15B87B0820B71C2300BBD11B /* PBXTargetDependency */,
-				15B87B0A20B71C2300BBD11B /* PBXTargetDependency */,
-			);
-			name = FSHelperTests;
-			productName = FSHelperTests;
-			productReference = 15B87B0520B71C2300BBD11B /* FSHelperTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -624,10 +562,6 @@
 						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 0930;
 					};
-					15B87B0420B71C2300BBD11B = {
-						CreatedOnToolsVersion = 9.3.1;
-						TestTargetID = 15A816CB20ACBDBD005898C2;
-					};
 				};
 			};
 			buildConfigurationList = 15A816C720ACBDBD005898C2 /* Build configuration list for PBXProject "LeanImpactCanvas" */;
@@ -647,7 +581,6 @@
 				15A816DF20ACBDBF005898C2 /* LeanImpactCanvasTests */,
 				15A816EA20ACBDBF005898C2 /* LeanImpactCanvasUITests */,
 				15B87AFC20B71C2300BBD11B /* LCHelper */,
-				15B87B0420B71C2300BBD11B /* FSHelperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -688,13 +621,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15B87B0320B71C2300BBD11B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -705,17 +631,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -753,25 +673,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FSHelper-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA29517666A3FF3B5AD2FA17 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FSHelper-FSHelperTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LCHelper-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -794,24 +696,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1FEBB36B146F3EB6F1B1584 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeanImpactCanvas/Pods-LeanImpactCanvas-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F75340871EBE5254479F24F2 /* [CP] Check Pods Manifest.lock */ = {
@@ -887,13 +771,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15B87B0120B71C2300BBD11B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -911,16 +788,6 @@
 			isa = PBXTargetDependency;
 			target = 15A816CB20ACBDBD005898C2 /* LeanImpactCanvas */;
 			targetProxy = 15A816EC20ACBDBF005898C2 /* PBXContainerItemProxy */;
-		};
-		15B87B0820B71C2300BBD11B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15B87AFC20B71C2300BBD11B /* LCHelper */;
-			targetProxy = 15B87B0720B71C2300BBD11B /* PBXContainerItemProxy */;
-		};
-		15B87B0A20B71C2300BBD11B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15A816CB20ACBDBD005898C2 /* LeanImpactCanvas */;
-			targetProxy = 15B87B0920B71C2300BBD11B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1191,7 +1058,7 @@
 		};
 		15B87B1420B71C2300BBD11B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8485DA638F8146CC83B2871B /* Pods-FSHelper.debug.xcconfig */;
+			baseConfigurationReference = A70EE272BE7FC2455D2443B3 /* Pods-LCHelper.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1233,7 +1100,7 @@
 		};
 		15B87B1520B71C2300BBD11B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FD1961E8D00A12F6A4948CE /* Pods-FSHelper.release.xcconfig */;
+			baseConfigurationReference = 2B3197E0E715179DEF69CB2C /* Pods-LCHelper.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1269,48 +1136,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		15B87B1620B71C2300BBD11B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8DC586E705D732CA482AAEF /* Pods-FSHelper-FSHelperTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YMTE95552Y;
-				INFOPLIST_FILE = FSHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SSS-LLC.FSHelperTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeanImpactCanvas.app/LeanImpactCanvas";
-			};
-			name = Debug;
-		};
-		15B87B1720B71C2300BBD11B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE8E73BDD4B292311AA50587 /* Pods-FSHelper-FSHelperTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YMTE95552Y;
-				INFOPLIST_FILE = FSHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SSS-LLC.FSHelperTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeanImpactCanvas.app/LeanImpactCanvas";
 			};
 			name = Release;
 		};
@@ -1358,15 +1183,6 @@
 			buildConfigurations = (
 				15B87B1420B71C2300BBD11B /* Debug */,
 				15B87B1520B71C2300BBD11B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		15B87B1A20B71C2300BBD11B /* Build configuration list for PBXNativeTarget "FSHelperTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				15B87B1620B71C2300BBD11B /* Debug */,
-				15B87B1720B71C2300BBD11B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

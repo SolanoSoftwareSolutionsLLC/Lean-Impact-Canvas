@@ -7,10 +7,6 @@ target 'LCHelper' do
 
   # Pods for LCHelper
 
-  target 'LCHelperTests' do
-    # Pods for testing
-  end
-
 end
 
 target 'LeanImpactCanvas' do
