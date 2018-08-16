@@ -47,7 +47,6 @@ class SignInViewController:UIViewController,GIDSignInUIDelegate {
         if helper.authHelper().isSignedIn(){
             LCDebug.debugMessage(fromWhatClass: "SignInViewController",
                                  message: "User is signed in setting current user in helper")
-            print(helper.userHelper().currentUser?.uid)
             signedIn = true
             toProjectsView()
         }

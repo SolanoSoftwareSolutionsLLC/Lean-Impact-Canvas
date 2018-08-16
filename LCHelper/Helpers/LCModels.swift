@@ -17,12 +17,14 @@ public class LCModels {
     static let DECKS_KEYWORD = "DECKS"
     static let SECTIONS_KEYWORD = "SECTIONS"
     static let PROJECT_NAME_KEYWORD = "name"
+    static let CARDS_KEYWORD = "CARDS"
     static let CARD_ORDER_KEYWORD = "cardOrder"
     
     /*STRING REPLACEMENT CONSTANTS*/
     private static let UID_KEYWORD = "$UID"
     private static let PID_KEYWORD = "$PID"
     private static let DID_KEYWORD = "$DID"
+    private static let CID_KEYWORD = "$CID"
 
     
     /******************************************************************/
@@ -48,6 +50,14 @@ public class LCModels {
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(DECK_KEYWORD)
     private static let PROJECT_DECK_PATH =
         PROJECTS_KEYWORD.appending("/").appending(PID_KEYWORD).appending("/").appending(DECK_KEYWORD).appending("/").appending(DID_KEYWORD)
+    
+    //Card
+    private static let CARD_ROOT_PATH =
+        CARDS_KEYWORD.appending("/").appending(CID_KEYWORD)
+    
+    //DECK
+    private static let DECK_ROOT_PATH =
+        DECKS_KEYWORD.appending("/").appending(DID_KEYWORD)
     
     /******************************************************************/
     //----------------------------------------------------------------//
@@ -85,6 +95,23 @@ public class LCModels {
     //----------------------------------------------------------------//
     /******************************************************************/
     //Path Models
+    
+    /*PROJECT_ROOT*/
+    public static func PROJECT_ROOT(withID id:String) -> String{
+        return PROJECT_ROOT_PATH.replacingOccurrences(of: PID_KEYWORD, with: id)
+    }
+    
+    
+    /*CARD_ROOT*/
+    public static func CARD_ROOT(withID id:String) -> String{
+        return CARD_ROOT_PATH.replacingOccurrences(of: CID_KEYWORD, with: id)
+    }
+    
+    /*DECK_ROOT*/
+    public static func DECK_ROOT(withID id:String) -> String{
+        return DECK_ROOT_PATH.replacingOccurrences(of: DID_KEYWORD, with: id)
+    }
+    
     /*USER_ROOT(usr)
      Purpose:
         Provides the root to the user's document

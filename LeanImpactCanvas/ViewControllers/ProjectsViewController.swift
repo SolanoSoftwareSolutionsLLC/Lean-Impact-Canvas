@@ -13,6 +13,7 @@ import SDWebImage
 class ProjectsViewController: UIViewController {
     @IBOutlet weak var profileBttn: UIButton!
     @IBOutlet weak var projectsCollectionView: UICollectionView!
+    @IBOutlet weak var nameLabel: UITextView!
     
     private let helper:LCHelper = LCHelper.shared()
     
@@ -46,7 +47,8 @@ class ProjectsViewController: UIViewController {
         
         self.userListener = userRef.addSnapshotListener({ (snap, err) in
             self.helper.userHelper().currentUser?.syncUser {
-                print("FOUND THIS MANY PROJECTS: \(self.helper.userHelper().currentUser?.projectRefs.count)")
+                self.nameLabel.text = (self.helper.userHelper().currentUser?.name)! + "!"
+
                 self.removeProjectListeners()
                 self.addProjectListeners()
             }
@@ -73,7 +75,6 @@ class ProjectsViewController: UIViewController {
                 })
                 self.projectListeners.append(listener)
             }
-            print(self.helper.userHelper().currentUser?.projectRefs)
         }
     }
     

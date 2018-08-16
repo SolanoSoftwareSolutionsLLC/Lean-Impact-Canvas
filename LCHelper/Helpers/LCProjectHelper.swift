@@ -14,26 +14,4 @@ public class LCProjectHelper{
     init(HelperRoot root:LCHelper) {
         self.helper = root
     }
-    
-    public func loadDecks(forProject proj:LCProject, completion: ([LCDeck]) -> ()){
-        if proj.deckRefs != nil{
-            proj.decks = []
-            let group:DispatchGroup = DispatchGroup()
-            
-            for deckRef in proj.deckRefs{
-                group.enter()
-                LCDeck.getDeck(withRef: deckRef, completion: { (deck) in
-                    if deck != nil{
-                        proj.decks.append(deck!)
-                    }
-                    group.leave()
-                })
-            }
-            
-            group.wait()
-        }else{
-            LCDebug.debugMessage(fromWhatClass: "LCProjectHelper",
-                                 message: "Unable to load decks for project \(proj)")
-        }
-    }
 }

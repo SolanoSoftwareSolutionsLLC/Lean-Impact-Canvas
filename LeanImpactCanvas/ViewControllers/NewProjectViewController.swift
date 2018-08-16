@@ -18,6 +18,8 @@ class NewProjectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.textField.delegate = self
+        
         self.blurEffect.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -37,7 +39,7 @@ class NewProjectViewController: UIViewController {
         helper.services().function().httpsCallable("newProject").call(["projName": textField.text]) { (result, err) in
             if err == nil{
                 LCDebug.debugMessage(fromWhatClass: "NewProjectViewController",
-                                     message: "Created new project got message: \(result?.data)")
+                                     message: "Created new project got message: \(String(describing: result?.data))")
                 self.blurEffect.isHidden = true
                 self.navigationController?.popViewController(animated: true)
             }else{
@@ -75,4 +77,10 @@ class NewProjectViewController: UIViewController {
     }
     */
 
+}
+extension NewProjectViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

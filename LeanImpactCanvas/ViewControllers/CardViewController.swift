@@ -8,6 +8,7 @@
 
 import UIKit
 import LCHelper
+import Swift
 
 class CardViewController: UIViewController {
     
@@ -17,6 +18,8 @@ class CardViewController: UIViewController {
     
     public var deck:LCDeck!
     private var cardListeners:[ListenerRegistration] = []
+    private var deckListener:ListenerRegistration!
+    
     private var cards:[String:LCCard] = [:]
     private var sortedCards:[LCCard] = []
     
@@ -30,6 +33,7 @@ class CardViewController: UIViewController {
     private var sectionCells:[String:SectionCell] = [:]
     private var activeCellIndex:IndexPath? = nil
     
+    private var addCardAlertController:UIAlertController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +43,50 @@ class CardViewController: UIViewController {
         
         collectionView.frame.size.width = view.frame.width
         collectionView.frame.size.height = view.frame.height
+        
+        setUpAlertView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         OrientationUtility.lockOrientation(.allButUpsideDown)
+        addDeckListener()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        OrientationUtility.lockOrientation(.portrait)
+        removeCardListeners()
+        removeDeckListener()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private func addDeckListener(){
+        deckListener = deck.fsRef.addSnapshotListener { (snap, err) in
+            if err == nil{
+                self.deck.sync {
+                    self.removeCardListeners()
+                    self.addCardListeners()
+                }
+            }
+        }
+        
+    }
+    private func addCardListeners(){
         var listener:ListenerRegistration
         
         for ref in deck.cardOrder{
             listener = ref.addSnapshotListener({ (snap, err) in
                 if err == nil{
-                    let card = LCCard(data: snap)
+                    let card = LCCard(snap: snap)
                     print("CARD ID HERE: \(card.id)")
                     self.cards[card.id] = card
                     self.sortCards()
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                
                 }else{
                     
                 }
@@ -59,14 +94,14 @@ class CardViewController: UIViewController {
             self.cardListeners.append(listener)
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        OrientationUtility.lockOrientation(.portrait)
-
-        for listener in cardListeners{
-            listener.remove()
+    private func removeDeckListener(){
+        self.deckListener.remove()
+    }
+    private func removeCardListeners(){
+        for ref in cardListeners{
+            ref.remove()
         }
-        cardListeners.removeAll()
+        cardListeners = []
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -91,16 +126,15 @@ class CardViewController: UIViewController {
     }
     
     private func sortCards(){
+        print(cards)
         sortedCards = []
-        for ref in deck.cardOrder{
-            let id = ref.path.replacingOccurrences(of: "CARDS/", with: "")
-            print("Cards : \(cards)")
-            print("Searching for ID: \(id)")
-            sortedCards.append(cards[id]!)
+        for card in cards.sorted(by: {$0.value.title < $1.value.title}){
+            sortedCards.append(card.value)
         }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+    }
+    
+    @IBAction func didPressAdd(_ sender: Any) {
+        present(addCardAlertController, animated: true, completion: nil)
     }
 }
 extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSource{
@@ -112,7 +146,7 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(collectionView.numberOfItems(inSection: 0))
+        //print(collectionView.numberOfItems(inSection: 0))
         let id = sortedCards[indexPath.row].id
         
         if sectionCells[id] != nil {
@@ -125,7 +159,7 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         let card = sortedCards[indexPath.row]
         
         cell.backgroundColor = colors[indexPath.row]
-        cell.WIDTH = collectionView.frame.size.width
+        cell.collectionViewSize = collectionView.frame.size
         
         cell.label.text = card.title
         cell.numOfImages = card.imageURLS.count
@@ -149,7 +183,7 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                 newActiveCell.active = false
                 activeCellIndex = nil
                 UIView.animate(withDuration: 0.2, animations: {
-                    newActiveCell.frame.size.height = SectionCell.INACTIVE_HEIGHT
+                    newActiveCell.frame.size.height = newActiveCell.HEIGHT
                 }) { (complete) in
                     let skip = indexPath.row
                     var otherCells:[IndexPath] = []
@@ -199,8 +233,8 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                         collectionView.reloadItems(at: otherCells)
 
                     }, completion: { (complete) in
-                        oldActiveCell?.frame.size.height = SectionCell.INACTIVE_HEIGHT
-                        newActiveCell.frame.size.height = SectionCell.ACTIVE_HEIGHT
+                        oldActiveCell?.frame.size.height = (oldActiveCell?.HEIGHT)!
+                        newActiveCell.frame.size.height = self.collectionView.frame.height - 5.0//SectionCell.ACTIVE_HEIGHT
                     })
                     
                     
@@ -232,7 +266,7 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                     collectionView.reloadItems(at: otherCells)
                     
                 }, completion: { (complete) in
-                    newActiveCell.frame.size.height = SectionCell.ACTIVE_HEIGHT
+                    newActiveCell.frame.size.height = self.collectionView.frame.height - 5.0//SectionCell.ACTIVE_HEIGHT
 
                 })
             }) { (complete) in
@@ -250,7 +284,41 @@ extension CardViewController:UICollectionViewDelegateFlowLayout{
             return (cell as! SectionCell).size
         }else{
             //print("returning default size")
-            return CGSize(width: collectionView.frame.size.width, height: SectionCell.INACTIVE_HEIGHT)
+            return CGSize(width: collectionView.frame.size.width, height: 50.0)
+        }
+    }
+}
+//NEW DECK ALERT VIEW
+extension CardViewController{
+    
+    private func setUpAlertView(){
+        let alert = UIAlertController(title: "Creating a New Card",
+                                      message: "Give it a name:",
+                                      preferredStyle: .alert)
+        let createAction:UIAlertAction = UIAlertAction(title: "Create!", style: .default) { (action) in
+            self.createNewCard(withName: alert.textFields![0].text!)
+        }
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            //self.addDeckAlertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(createAction)
+        alert.addAction(cancelAction)
+        
+        
+        addCardAlertController = alert
+    }
+    
+    private func createNewCard(withName name:String){
+        LCHelper.shared().services().function().httpsCallable("newCard")
+            .call(["deckName": name, "deckID":self.deck.id]) { (result, err) in
+                if err == nil{
+                    LCDebug.debugMessage(fromWhatClass: "CardViewController",
+                                         message: "Created new card got message: \(String(describing: result?.data))")
+                }else{
+                    
+                }
         }
     }
 }

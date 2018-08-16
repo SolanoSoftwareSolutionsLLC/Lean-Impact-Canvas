@@ -17,16 +17,30 @@ class SectionCell: UICollectionViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let colors:[UIColor] = [.gray]
-    
-    public static let IDENTIFIER:String = "sectionCell"
     private static let IMAGE_IDENTIFIER = "imageCell"
     
-    public static let ACTIVE_HEIGHT:CGFloat = 500.0
-    public static let INACTIVE_HEIGHT:CGFloat = 50.0
-    
-    public var WIDTH:CGFloat = 100.0
-    
     public var BG_COLOR:UIColor = .white
+    public static let IDENTIFIER:String = "sectionCell"
+    
+    public var collectionViewSize:CGSize = CGSize()
+    public var numOfImages:Int = 1
+
+    
+    public var HEIGHT:CGFloat{
+        get{
+            if active{
+                return CGFloat(collectionViewSize.height - 10.0)
+            }
+            return 50.0
+        }
+    }
+    
+    public var WIDTH:CGFloat{
+        get{
+            return collectionViewSize.width
+        }
+    }
+    
     public var active:Bool = false{
         didSet{
             if active{
@@ -40,14 +54,9 @@ class SectionCell: UICollectionViewCell {
         }
     }
     
-    public var numOfImages:Int = 1
-    
     public var size:CGSize{
         get{
-            if active{
-                return CGSize(width: WIDTH, height: SectionCell.ACTIVE_HEIGHT)
-            }
-            return CGSize(width: WIDTH, height: SectionCell.INACTIVE_HEIGHT)
+           return CGSize(width: WIDTH, height: HEIGHT)
         }
     }
     
@@ -59,8 +68,6 @@ class SectionCell: UICollectionViewCell {
     }
     
     private func setUp(){
-        //stackView.distribution = .fillEqually
-
         collectionView.delegate = self
         collectionView.dataSource = self
 

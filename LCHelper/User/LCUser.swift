@@ -26,13 +26,20 @@ public class LCUser{
         let userRef:DocumentReference = (LCHelper.shared().services().FSRoot?.document(LCModels.USER_ROOT(forUser: self.uid)))!
         
         userRef.getDocument { (data, err) in
-            self.name = data?.get("name") as! String
-            self.uid = data?.get("uid") as! String
-            self.projectRefs = data?.get(LCModels.PROJECTS_KEYWORD) as! [DocumentReference]
-            
-            LCDebug.debugMessage(fromWhatClass: "LCUser",
-                                 message: "User has been synced with DB")
-            completion()
+            if (data?.exists)!{
+                self.name = data?.get("name") as! String
+                self.uid = data?.get("uid") as! String
+                self.projectRefs = data?.get(LCModels.PROJECTS_KEYWORD) as! [DocumentReference]
+                LCDebug.debugMessage(fromWhatClass: "LCUser",
+                                     message: "User has been synced with DB")
+                completion()
+            }else{
+                LCHelper.shared().services().function()
+                    .httpsCallable("newUser")
+                    .call(completion: { (result, err) in
+                        self.syncUser {completion()}
+                })
+            }
         }
     }
 

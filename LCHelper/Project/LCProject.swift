@@ -18,6 +18,8 @@ public class LCProject:CustomStringConvertible{
     public var users:[DocumentReference]!
     public var deckRefs:[DocumentReference]!
     
+    public var fsRef:DocumentReference!
+    
     public var description: String{
         return "LCProject: "
             + "{id: \(id)}"
@@ -27,44 +29,25 @@ public class LCProject:CustomStringConvertible{
     }
     
     public init (snap:DocumentSnapshot){
-        self.name = snap.get("name") as! String
-        self.id = snap.get("id") as! String
-        self.users = snap.get(LCModels.USERS_KEYWORD) as! [DocumentReference]
-        self.deckRefs = snap.get(LCModels.DECKS_KEYWORD) as! [DocumentReference]
+        self.setUp(snap: snap)
     }
     
     public init(){}
     
-//    internal static func  getProjectWithRef(ref:DocumentReference,  completion: @escaping (LCProject?)->()){
-//        ref.getDocument { (snap, err) in
-//            var project:LCProject? = nil
-//            if err == nil{
-//                project = LCProject()
-//                
-//                LCDebug.debugMessage(fromWhatClass: "LCProject",
-//                                     message: "Firestore data recieved for project: \n"
-//                                        + String(describing: snap?.data()))
-//                
-//                project?.deckRefs = snap?.get("DECKS") as! [DocumentReference]
-//                project?.users = snap?.get(LCModels.USERS_KEYWORD) as! [DocumentReference]
-//                project?.name = snap?.get("name") as! String
-//                project?.id = snap?.get("id") as! String
-//                
-//                DispatchQueue.global().async {
-//                    project?.getDecks()
-//                }
-//            }else{
-//                LCDebug.debugMessage(fromWhatClass: "LCProject", message: "Unable to get project due to error: \(err)")
-//            }
-//            completion(project)
-//        }
-//    }
-//    
-//    private func getDecks(){
-//        for deckRef in deckRefs{
-//            LCDeck.getDeck(withRef: deckRef) { (deck) in
-//                self.decks.append(deck!)
-//            }
-//        }
-//    }
+    public func sync(completion:@escaping ()->()){
+        fsRef.getDocument { (snap, err) in
+            if err == nil{
+                self.setUp(snap: snap!)
+                completion()
+            }
+        }
+    }
+    
+    private func setUp(snap:DocumentSnapshot){
+        self.name = snap.get("name") as! String
+        self.id = snap.get("id") as! String
+        self.users = snap.get(LCModels.USERS_KEYWORD) as! [DocumentReference]
+        self.deckRefs = snap.get(LCModels.DECKS_KEYWORD) as! [DocumentReference]
+        self.fsRef = helper.services().FSRoot?.document(LCModels.PROJECT_ROOT(withID: self.id))
+    }
 }

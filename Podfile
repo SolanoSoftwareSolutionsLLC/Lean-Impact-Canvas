@@ -16,7 +16,7 @@ target 'LeanImpactCanvas' do
   # Pods for LeanImpactCanvas
 	pod 'SDWebImage'
   	pod 'SwiftyJSON'
-
+	pod 'Cards'
   target 'LeanImpactCanvasTests' do
     inherit! :search_paths
     # Pods for testing
