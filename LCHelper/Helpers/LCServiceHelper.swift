@@ -39,4 +39,8 @@ public class LCServiceHelper{
     public func function() -> Functions {
         return Functions.functions()
     }
+    
+    public func storage() -> Storage{
+        return Storage.storage()
+    }
 }

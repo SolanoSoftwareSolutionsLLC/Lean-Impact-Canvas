@@ -139,7 +139,9 @@ extension CardViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCell
-        cell.setUp(presentingView: self)
+        
+        cell.deckName = deck.title
+        cell.setUp(presentingView: self,lcCard: sortedCards[indexPath.row])
         
         return cell
     }
