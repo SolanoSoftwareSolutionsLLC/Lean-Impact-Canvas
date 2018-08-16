@@ -42,7 +42,7 @@
 		15A1321120EC1489006245E7 /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321020EC1489006245E7 /* DecksViewController.swift */; };
 		15A1321520EC1960006245E7 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321420EC1960006245E7 /* CardViewController.swift */; };
 		15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321A20EC19F1006245E7 /* PresentationViewController.swift */; };
-		15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321C20EEA1D7006245E7 /* SectionCell.swift */; };
+		15A1321D20EEA1D7006245E7 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1321C20EEA1D7006245E7 /* CardCell.swift */; };
 		15A816D020ACBDBD005898C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816CF20ACBDBD005898C2 /* AppDelegate.swift */; };
 		15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A816D120ACBDBD005898C2 /* SignInViewController.swift */; };
 		15A816D520ACBDBD005898C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A816D320ACBDBD005898C2 /* Main.storyboard */; };
@@ -144,7 +144,7 @@
 		15A1321020EC1489006245E7 /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
 		15A1321420EC1960006245E7 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		15A1321A20EC19F1006245E7 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
-		15A1321C20EEA1D7006245E7 /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
+		15A1321C20EEA1D7006245E7 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		15A816CC20ACBDBD005898C2 /* LeanImpactCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeanImpactCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A816CF20ACBDBD005898C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15A816D120ACBDBD005898C2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				1590AEE220D2C7A200151B80 /* ProjectCell.swift */,
-				15A1321C20EEA1D7006245E7 /* SectionCell.swift */,
+				15A1321C20EEA1D7006245E7 /* CardCell.swift */,
 				15D16CFE210A3CAE00583388 /* DeckCell.swift */,
 			);
 			path = Cells;
@@ -731,7 +731,7 @@
 				1590AEE120D17A2900151B80 /* ProjectsViewController.swift in Sources */,
 				15A816D220ACBDBD005898C2 /* SignInViewController.swift in Sources */,
 				15FD0EB921232A9300132B85 /* NewProjectViewController.swift in Sources */,
-				15A1321D20EEA1D7006245E7 /* SectionCell.swift in Sources */,
+				15A1321D20EEA1D7006245E7 /* CardCell.swift in Sources */,
 				15EAA3B420CAEB9C0022E95C /* OrientationUtility.swift in Sources */,
 				15A1321B20EC19F1006245E7 /* PresentationViewController.swift in Sources */,
 				15A1321520EC1960006245E7 /* CardViewController.swift in Sources */,
